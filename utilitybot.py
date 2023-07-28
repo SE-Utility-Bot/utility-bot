@@ -11,7 +11,7 @@ bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
 r = bot.joinRoom(1)
 r.send("Bot has started.")
-
+bot.joinRoom(147516).send("No freezing!")
 
 def remote(event):
     if event.content[:10] == "remotesay ":
