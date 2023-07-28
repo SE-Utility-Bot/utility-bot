@@ -93,11 +93,11 @@ def msg(event):
         )
     elif event.content == "getcmd":
         commands = [
-            "• echo",
-            "• echochr",
-            "• calc",
-            "• ping",
-            "• remotesay",
+            "• echo <message>",
+            "• echochr <character number>",
+            "• calc <python expression>",
+            "• ping <user name>",
+            "• remotesay <room>, <message>",
             "• getsource",
             "• getcmd",
             "• emptystring",
@@ -105,7 +105,7 @@ def msg(event):
         ]
         r.send(
             r.buildReply(
-                event.message_id, "Here are the available commands for this bot:"
+                event.message_id, "Here are the available commands for this bot and their structures:"
             )
         )
         r.send("\n".join(commands))
