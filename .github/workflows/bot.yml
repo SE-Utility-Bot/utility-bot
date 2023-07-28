@@ -21,4 +21,4 @@ jobs:
           python3 -m pip install -r requirements.txt
 
       - name: execute py script # run utilitybot.py
-        run: python3 utilitybot.py
+        run: python3 utilitybot.py ${{ secrets.BOT_EMAIL }} ${{ secrets.BOT_PASSWORD }}
