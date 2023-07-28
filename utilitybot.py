@@ -40,22 +40,10 @@ def msg(event):
         g.send(event.user_name+': '+li[2])
         g.on(Events.MESSAGE,remote)
         r.send(r.buildReply(event.message_id,"Message sent."))
-    elif event.content[:8]=="suggest ":
-        h=open("suggestions.txt","a")
-        h.write("User no. "+str(event.user_id)+":\n"+html.unescape(event.content[8:])+"\n\n")
-        h.close()
-        r.send(r.buildReply(event.message_id,"Your suggestion has been recorded. Thank you for your feedback."))
     elif event.content=="getsource":
-        k=open(__file__)
-        l=k.readlines()
-        for y in range(len(l)):
-            l[y]="    "+l[y]
-        source=l[12:-12]
-        actual=''.join(source)
-        r.send(r.buildReply(event.message_id,"Here are the callable functions for this bot:"))
-        r.send(actual)
+        r.send(r.buildReply(event.message_id, "https://github.com/PlaceReporter99/utility-bot/blob/main/utilitybot.py"))
     elif event.content=="getcmd":
-        commands=['• echo','• echochr','• calc','• ping','• remotesay','• suggest','• getsource','• getcmd','• emptystring']
+        commands=['• echo','• echochr','• calc','• ping','• remotesay','• getsource','• getcmd','• emptystring']
         r.send(r.buildReply(event.message_id, "Here are the available commands for this bot:"))
         r.send('\n'.join(commands))
     elif event.content=="emptystring":
