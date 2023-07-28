@@ -57,14 +57,11 @@ def msg(event):
         string = html.unescape(event.content[5:])
         val = set(string)
         if val.issubset(allowed):
-            if string == "^^^":
-                r.send(r.buildReply(event.message_id, "Disabled for security reasons."))
-            else:
-                r.send(
-                    r.buildReply(
-                        event.message_id, "The answer is " + str(eval(string)) + "."
-                    )
+            r.send(
+                r.buildReply(
+                    event.message_id, "The answer is " + str(eval(string)) + "."
                 )
+            )
         else:
             r.send(
                 r.buildReply(
