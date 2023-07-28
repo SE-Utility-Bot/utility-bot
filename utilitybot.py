@@ -6,7 +6,6 @@ import os
 import time
 import re
 import decimal
-from mfunc.mfunc import mfunc
 bot=sechat.Bot()
 bot.login("computertext@outlook.com","MyLaptop+9")
 r=bot.joinRoom(1)
@@ -51,7 +50,7 @@ def msg(event):
         l=k.readlines()
         for y in range(len(l)):
             l[y]="    "+l[y]
-        source=l[13:-12]
+        source=l[12:-12]
         actual=''.join(source)
         r.send(r.buildReply(event.message_id,"Here are the callable functions for this bot:"))
         r.send(actual)
