@@ -1,8 +1,8 @@
-name: run main.py
+name: run utilitybot.py
 
 on:
   workflow_dispatch:
-    - name: run script
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,5 +20,5 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
 
-      - name: execute py script # run main.py
-        run: python utilitybot.py
+      - name: execute py script # run utilitybot.py
+        run: python3 utilitybot.py
