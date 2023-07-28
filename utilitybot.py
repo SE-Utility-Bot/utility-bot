@@ -49,7 +49,7 @@ def msg(event):
     elif event.content=="emptystring":
         r.send(r.buildReply(event.message_id, "https://i.stack.imgur.com/Fh2Cq.png"))
     elif event.content=="help":
-        r.send(r.buildReply(event.message_id, "Type in \"getcmd\" (without the quotes) for a list of commands. Repo: https://github.com/PlaceReporter99/utility-bot")
+        r.send(r.buildReply(event.message_id, "Type in \"getcmd\" (without the quotes) for a list of commands. Repo: https://github.com/PlaceReporter99/utility-bot"))
 r.on(Events.MESSAGE,msg)
 print("Startup Successful.")
 try:
