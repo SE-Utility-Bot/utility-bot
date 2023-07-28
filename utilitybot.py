@@ -51,7 +51,7 @@ def msg(event):
         l=k.readlines()
         for y in range(len(l)):
             l[y]="    "+l[y]
-        source=l[13:-12]
+        source=l[13:-8]
         actual=''.join(source)
         r.send(r.buildReply(event.message_id,"Here are the callable functions for this bot:"))
         r.send(actual)
@@ -65,11 +65,7 @@ r.on(Events.MESSAGE,msg)
 print("Startup Successful.")
 try:
     while True:
-        p=sys.executable
-        time.sleep(1800)
-        print("Restarting...")
-        r.send("Doing half-hourly reboot.")
-        os.execl(p, p, * sys.argv)
+        pass
 finally:
     r.send("Bot has stopped for updates.")
     bot.leaveAllRooms()
