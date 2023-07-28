@@ -7,7 +7,7 @@ import time
 import re
 import decimal
 bot=sechat.Bot()
-bot.login("computertext@outlook.com","MyLaptop+9")
+bot.login(sys.argv[1],sys.argv[2])
 r=bot.joinRoom(1)
 r.send("Bot has started.")
 def remote(event):
