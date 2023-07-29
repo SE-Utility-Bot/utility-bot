@@ -121,11 +121,7 @@ r.on(Events.MESSAGE, msg)
 print("Startup Successful.")
 try:
     while True:
-        p = sys.executable
-        time.sleep(1800)
-        print("Restarting...")
-        r.send("Doing half-hourly reboot.")
-        os.execl(p, p, *sys.argv)
+        pass
 finally:
     r.send("Bot has stopped for updates.")
     bot.leaveAllRooms()
