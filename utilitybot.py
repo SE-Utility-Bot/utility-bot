@@ -134,6 +134,7 @@ try:
       if datetime.datetime.now().minute == 0:
           r.send("Bot has stopped.")
           print("Stopping...")
+          bot.leaveAllRooms()
           quit()
 finally:
   r.send("Bot has stopped for updates.")
