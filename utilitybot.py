@@ -131,11 +131,6 @@ try:
       print("Bot is running. Seconds since start: {}".format(counter))
       time.sleep(1)
       counter += 1
-      if datetime.datetime.now().minute == 28:
-          r.send("Bot has stopped.")
-          print("Stopping...")
-          bot.leaveAllRooms()
-          quit()
 finally:
   r.send("Bot has stopped for updates.")
   bot.leaveAllRooms()
