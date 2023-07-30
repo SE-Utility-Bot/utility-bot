@@ -121,7 +121,6 @@ def msg(event):
         r.send(r.buildReply(event.message_id, "All systems operational."))
 
 
-keep_alive()
 r.on(Events.MESSAGE, msg)
 print("Startup Successful.")
 
