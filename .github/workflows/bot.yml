@@ -3,7 +3,7 @@ name: Turn on Utility Bot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "15 * * * *"
   
 jobs:
   build:
