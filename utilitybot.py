@@ -6,6 +6,7 @@ import os
 import time
 import re
 import decimal
+import datetime
 
 bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
@@ -128,11 +129,12 @@ try:
     counter = 0
     r.send("Bot has started.")
     while True:
-      print("bot is running {}".format(counter))
+      print("Bot is running. Seconds since start: {}".format(counter))
       time.sleep(1)
       counter += 1
-      if counter == 3600:
+      if datetime.datetime.now().minute == 0:
           r.send("Bot has stopped.")
+          print("Stopping...")
           quit()
 finally:
   r.send("Bot has stopped for updates.")
