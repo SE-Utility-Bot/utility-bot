@@ -85,7 +85,7 @@ def msg(event):
         r.send(
             r.buildReply(
                 event.message_id,
-                "https://replit.com/@PlaceReporter99/Utility-Bot#utilitybot.py",
+                "https://github.com/PlaceReporter99/utility-bot/blob/main/utilitybot.py",
             )
         )
     elif event.content == "getcmd":
@@ -113,7 +113,7 @@ def msg(event):
         r.send(
             r.buildReply(
                 event.message_id,
-                'Type in "getcmd" (without the quotes) for a list of commands.\n\nRepo: https://replit.com/@PlaceReporter99/Utility-Bot?v=1\nStatus: https://stats.uptimerobot.com/RykYpInGGD',
+                'Type in "getcmd" (without the quotes) for a list of commands.\n\nRepo: https://github.com/PlaceReporter99/utility-bot',
             )
         )
     elif event.content == "op":
@@ -129,10 +129,11 @@ try:
     r.send("Bot has started.")
     while True:
       print("bot is running {}".format(counter))
-      time.sleep(10)
-      if counter % 180 == 0:
-        bot.joinRoom(147516).send("No freezing!")
+      time.sleep(1)
       counter += 1
+      if counter == 3600:
+          r.send("Bot has stopped.")
+          quit()
 finally:
   r.send("Bot has stopped for updates.")
   bot.leaveAllRooms()
