@@ -10,8 +10,6 @@ import decimal
 bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
 r = bot.joinRoom(1)
-r.send("Bot has started.")
-bot.joinRoom(147516).send("No freezing!")
 
 def remote(event):
     if event.content[:10] == "remotesay ":
@@ -77,6 +75,8 @@ def msg(event):
         global g
         com = html.unescape(event.content[10:])
         li = com.partition(",")
+        if li[1] == '':
+          li = ("147516", ',', li[0])
         g = bot.joinRoom(int(li[0]))
         g.send(event.user_name + ": " + li[2])
         g.on(Events.MESSAGE, remote)
@@ -85,7 +85,7 @@ def msg(event):
         r.send(
             r.buildReply(
                 event.message_id,
-                "https://github.com/PlaceReporter99/utility-bot/blob/main/utilitybot.py",
+                "https://replit.com/@PlaceReporter99/Utility-Bot#utilitybot.py",
             )
         )
     elif event.content == "getcmd":
@@ -99,6 +99,7 @@ def msg(event):
             "• getcmd",
             "• emptystring",
             "• help",
+            "• op",
         ]
         r.send(
             r.buildReply(
@@ -112,16 +113,26 @@ def msg(event):
         r.send(
             r.buildReply(
                 event.message_id,
-                'Type in "getcmd" (without the quotes) for a list of commands. Repo: https://github.com/PlaceReporter99/utility-bot',
+                'Type in "getcmd" (without the quotes) for a list of commands.\n\nRepo: https://replit.com/@PlaceReporter99/Utility-Bot?v=1\nStatus: https://stats.uptimerobot.com/RykYpInGGD',
             )
         )
+    elif event.content == "op":
+        r.send(r.buildReply(event.message_id, "All systems operational."))
 
 
+keep_alive()
 r.on(Events.MESSAGE, msg)
 print("Startup Successful.")
+
 try:
+    counter = 0
+    r.send("Bot has started.")
     while True:
-        pass
+      print("bot is running {}".format(counter))
+      time.sleep(10)
+      if counter % 180 == 0:
+        bot.joinRoom(147516).send("No freezing!")
+      counter += 1
 finally:
-    r.send("Bot has stopped for updates.")
-    bot.leaveAllRooms()
+  r.send("Bot has stopped for updates.")
+  bot.leaveAllRooms()
