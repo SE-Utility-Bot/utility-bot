@@ -1,4 +1,4 @@
-name: Turn on Utility Bot
+name: Run Utility Bot
 
 on:
   workflow_dispatch:
@@ -26,5 +26,5 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
 
-      - name: Turn on Utility Bot # run utilitybot.py
+      - name: Activate Utility Bot # run utilitybot.py
         run: python3 utilitybot.py ${{ secrets.BOT_EMAIL }} ${{ secrets.BOT_PASSWORD }}
