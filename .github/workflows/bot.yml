@@ -2,6 +2,11 @@ name: Run Utility Bot
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "utilitybot.py"
   schedule:
     - cron: "13 * * * *"
 
