@@ -10,7 +10,7 @@ def meta(a, b, c):
   Metaclass for the Tests class, so that testing is as easy as doing Tests().
   """
   def func():
-    for x in list(c.values())[2:]:
+    for x in list(c.values())[3:]:
       x()
   
   return func
