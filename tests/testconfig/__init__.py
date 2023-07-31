@@ -43,6 +43,5 @@ class Tests(metaclass=meta):
     time.sleep(2)
     message = p.getRecentMessages()[-1]
     p.send("You may continue sending messages.")
-    print(message['content'], hext)
     assert message['content'] == hext
     
