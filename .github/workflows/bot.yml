@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  activate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo content
