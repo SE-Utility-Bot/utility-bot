@@ -1,6 +1,7 @@
 import sechat
 import secrets
 import sys
+import time
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
@@ -39,6 +40,7 @@ class Tests(metaclass=meta):
     p.send("Bot is being tested. Do not send any messages.")
     hext = secrets.token_hex(16)
     p.send("echo {}".format(hext))
+    time.sleep(2)
     message = p.getRecentMessages()[-1]
     p.send("You may continue sending messages.")
     print(message['content'], hext)
