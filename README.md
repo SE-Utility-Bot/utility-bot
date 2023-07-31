@@ -10,3 +10,5 @@ Make a fork, apply the changes in the fork and then [open a pull request](https:
 ## For commiters
 ### How do I stop tests from being run on my commit?
 Just add the exact text `[no-test]` anywhere in the commit.
+### How do I stop the bot from updating when I edit the script?
+Just add the exact text `[no-update]` anywhere in the commit.
