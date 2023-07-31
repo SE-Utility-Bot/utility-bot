@@ -51,9 +51,7 @@ class Tests(metaclass=meta):
     ROOM.send("calc {0} * {1}".format(rand1, rand2))
     time.sleep(2)
     message = ROOM.getRecentMessages()[-1]
-    print(message['content'])
     number = message['content'][26:-1]
-    print(number)
     assert result == int(number)
   def test_finish():
     ROOM.send("You may continue sending messages.")
