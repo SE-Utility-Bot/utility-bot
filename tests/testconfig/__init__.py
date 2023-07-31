@@ -1,9 +1,11 @@
 import sechat
+import secrets
 import sys
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
 TESTING_ROOM = 147571
+BOT_ID = 576644
 
 def meta(a, b, c):
   """
@@ -28,6 +30,16 @@ class Tests(metaclass=meta):
     p.send(MSG)
     message = p.getRecentMessages()[-1]
     p.send("You may now send messages.")
-    bot.leaveRoom(TESTING_ROOM)
-    del p
-    assert (message['content'] == MSG and message['user_id'] == 576644)
+    assert (message['content'] == MSG and message['user_id'] == BOT_ID)
+
+  def test_echo():
+    bot = sechat.Bot()
+    bot.login(EMAIL, PASSWORD)
+    p = bot.joinRoom(1)
+    p.send("Bot is being tested. Do not send any messages.")
+    hext = secrets.token_hex(16)
+    p.send("echo {}".format(hext))
+    message = [x for x in p.getRecentMessages() if x['user-id'] == BOT_ID][-1]
+    p.send("You may continue sending messages.")
+    assert message['content'] == hext
+    
