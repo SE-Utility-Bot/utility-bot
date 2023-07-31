@@ -7,7 +7,20 @@ EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
 TESTING_ROOM = 147571
 
-class Tests(metaclass=testhelper.metaclass):
+def meta(a, b, c):
+  """
+  Metaclass for the Tests class, so that testing is as easy as doing Tests().
+  """
+  return Ctuple(c.values())[2:]
+
+class Ctuple(tuple):
+  """
+  A class representing a callable tuple, which calls everything inside it. Used in the metaclass function.
+  """
+  def __call__(self, *args, **kwargs):
+    return Ctuple(x(*args, **kwargs) for x in self)
+
+class Tests(metaclass=meta):
   """
   Testing functions go in this class.
   """
