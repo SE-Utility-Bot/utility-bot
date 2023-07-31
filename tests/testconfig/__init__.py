@@ -52,8 +52,7 @@ class Tests(metaclass=meta):
     time.sleep(2)
     message = ROOM.getRecentMessages()[-1]
     print(message['content'])
-    regex = re.compile("\d+")
-    number = regex.search(message['content'][::-1]).groups(0)[::-1]
+    number = message['content'][27:-1]
     print(number)
     assert result == int(number)
   def test_finish():
