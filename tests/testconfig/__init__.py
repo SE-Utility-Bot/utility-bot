@@ -51,6 +51,7 @@ class Tests(metaclass=meta):
     ROOM.send("calc {0} * {1}".format(rand1, rand2))
     time.sleep(2)
     message = ROOM.getRecentMessages()[-1]
+    print(message['content'])
     regex = re.compile("\d+")
     number = regex.search(message['content'][::-1]).groups(0)[::-1]
     print(number)
