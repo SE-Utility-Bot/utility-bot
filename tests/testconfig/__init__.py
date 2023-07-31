@@ -39,7 +39,7 @@ class Tests(metaclass=meta):
     p.send("Bot is being tested. Do not send any messages.")
     hext = secrets.token_hex(16)
     p.send("echo {}".format(hext))
-    message = [x for x in p.getRecentMessages() if x['user-id'] == BOT_ID][-1]
+    message = [x for x in p.getRecentMessages() if x['user_id'] == BOT_ID][-1]
     p.send("You may continue sending messages.")
     assert message['content'] == hext
     
