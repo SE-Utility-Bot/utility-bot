@@ -1,5 +1,3 @@
-import testhelper
-
 import sechat
 import sys
 
