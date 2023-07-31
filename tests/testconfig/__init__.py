@@ -41,6 +41,6 @@ class Tests(metaclass=meta):
     p.send("echo {}".format(hext))
     message = p.getRecentMessages()[-1]
     p.send("You may continue sending messages.")
-    print(message['content', hext])
+    print(message['content'], hext)
     assert message['content'] == hext
     
