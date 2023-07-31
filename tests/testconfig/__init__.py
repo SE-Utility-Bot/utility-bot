@@ -52,7 +52,7 @@ class Tests(metaclass=meta):
     time.sleep(2)
     message = ROOM.getRecentMessages()[-1]
     print(message['content'])
-    number = message['content'][27:-1]
+    number = message['content'][26:-1]
     print(number)
     assert result == int(number)
   def test_finish():
