@@ -79,10 +79,14 @@ def msg(event):
         li = com.partition(",")
         if li[1] == '':
           li = ("147516", ',', li[0])
-        g = bot.joinRoom(int(li[0]))
-        g.send(event.user_name + ": " + li[2])
-        g.on(Events.MESSAGE, remote)
-        r.send(r.buildReply(event.message_id, "Message sent."))
+
+        if li[0] == "147571":
+          r.send(r.buildReply(event.message_id, "Sorry, I'm afraid I can't do that."))
+        else:                  
+          g = bot.joinRoom(int(li[0]))
+          g.send(event.user_name + ": " + li[2])
+          g.on(Events.MESSAGE, remote)
+          r.send(r.buildReply(event.message_id, "Message sent."))
     elif event.content == "getsource":
         r.send(
             r.buildReply(
