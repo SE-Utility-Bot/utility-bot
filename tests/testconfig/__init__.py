@@ -1,4 +1,4 @@
-from testhelper import metaclass
+import testhelper
 
 import sechat
 import sys
@@ -7,7 +7,7 @@ EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
 TESTING_ROOM = 147571
 
-class Tests(metaclass=metaclass):
+class Tests(metaclass=testhelper.metaclass):
   """
   Testing functions go in this class.
   """
