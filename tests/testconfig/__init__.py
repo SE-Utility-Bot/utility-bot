@@ -2,11 +2,15 @@ import sechat
 import secrets
 import sys
 import time
+import re
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
 TESTING_ROOM = 147571
 BOT_ID = 576644
+BOT = sechat.Bot()
+BOT.login(EMAIL, PASSWORD)
+ROOM = BOT.joinRoom(1)
 
 def meta(a, b, c):
   """
@@ -24,24 +28,31 @@ class Tests(metaclass=meta):
   Every function must take no arguments, not even the self argument.
   """
   def test_message_send():
-    bot = sechat.Bot()
-    bot.login(EMAIL, PASSWORD)
-    p = bot.joinRoom(TESTING_ROOM)
+    p = BOT.joinRoom(TESTING_ROOM)
     MSG = "The bot is undergoing a test. Please do not send any messages until said otherwise."
     p.send(MSG)
     message = p.getRecentMessages()[-1]
     p.send("You may now send messages.")
     assert (message['content'] == MSG and message['user_id'] == BOT_ID)
-
+    
+  def test_start():
+    ROOM.send("Bot is being tested. Do not send any messages until otherwise stated by me, or The Empty String Photographer.")
+  
   def test_echo():
-    bot = sechat.Bot()
-    bot.login(EMAIL, PASSWORD)
-    p = bot.joinRoom(1)
-    p.send("Bot is being tested. Do not send any messages.")
     hext = secrets.token_hex(16)
-    p.send("echo {}".format(hext))
+    ROOM.send("echo {}".format(hext))
     time.sleep(2)
-    message = p.getRecentMessages()[-1]
-    p.send("You may continue sending messages.")
+    message = ROOM.getRecentMessages()[-1]
     assert message['content'] == hext
+
+  def test_calc():
+    rand1, rand2 = secrets.randbits(256), secrets.randbits(256)
+    result = rand1 * rand2
+    ROOM.send("calc {0} * {1}".format(rand1, rand2))
+    time.sleep(2)
+    message = ROOM.getRecentMessages()[-1]
+    regex = re.compile("\d+")
+    assert result == int(regex.search(message['content'][::-1]).groups(0)[::-1])
+  def test_finish():
+    ROOM.send("You may continue sending messages.")
     
