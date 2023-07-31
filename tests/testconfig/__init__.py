@@ -18,8 +18,9 @@ def meta(a, b, c):
 class Tests(metaclass=meta):
   """
   Testing functions go in this class.
+  Every function must take no arguments, not even the self argument.
   """
-  def test_message_send(self):
+  def test_message_send():
     bot = sechat.Bot()
     bot.login(EMAIL, PASSWORD)
     p = bot.joinRoom(TESTING_ROOM)
