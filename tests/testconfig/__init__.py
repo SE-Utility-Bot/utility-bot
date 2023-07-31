@@ -52,7 +52,9 @@ class Tests(metaclass=meta):
     time.sleep(2)
     message = ROOM.getRecentMessages()[-1]
     regex = re.compile("\d+")
-    assert result == int(regex.search(message['content'][::-1]).groups(0)[::-1])
+    number = regex.search(message['content'][::-1]).groups(0)[::-1]
+    print(number)
+    assert result == int(number)
   def test_finish():
     ROOM.send("You may continue sending messages.")
     
