@@ -26,7 +26,7 @@ class Tests(metaclass=meta):
     p = bot.joinRoom(TESTING_ROOM)
     MSG = "The bot is undergoing a test. Please do not send any messages until said otherwise."
     p.send(MSG)
-    message = r.getRecentMessages()[-1]
+    message = p.getRecentMessages()[-1]
     p.send("You may now send messages.")
     bot.leaveRoom(TESTING_ROOM)
     del p
