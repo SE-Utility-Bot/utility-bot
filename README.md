@@ -1,4 +1,6 @@
 # Utility Bot
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/PlaceReporter99/utility-bot/main.svg)](https://results.pre-commit.ci/latest/github/PlaceReporter99/utility-bot/main)
+
 Utility Bot is hosted on GitHub!
 ## For end users
 ### Where is the bot?
