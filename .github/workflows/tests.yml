@@ -1,17 +1,26 @@
-name: Run Tests
+name: Lint and Run Tests
 
 on:
   workflow_dispatch:
   push:
   pull_request:
   schedule:
-    - cron: "43 3 * * *"
+    - cron: "43 */6 * * *"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '[no-lint]') }}
+    steps:
+      - name: Checkout repo content
+      - uses: actions/checkout@v3.5.3
+      
+      - name: Format code
+      - uses: psf/black@stable
   test:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
