@@ -53,6 +53,7 @@ class Tests(metaclass=meta):
     message = ROOM.getRecentMessages()[-1]
     number = message['content'][26:-1]
     assert result == int(number)
+  
   def test_finish():
     ROOM.send("You may continue sending messages.")
     
