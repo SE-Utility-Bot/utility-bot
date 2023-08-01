@@ -13,6 +13,7 @@ bot.login(sys.argv[1], sys.argv[2])
 r = bot.joinRoom(1)
 bot.joinRoom(147516).send("No freezing!")
 
+
 def remote(event):
     if event.content[:10] == "remotesay ":
         r.send(event.user_name + ": " + html.unescape(event.content[10:]))
@@ -77,16 +78,16 @@ def msg(event):
         global g
         com = html.unescape(event.content[10:])
         li = com.partition(",")
-        if li[1] == '':
-          li = ("147516", ',', li[0])
+        if li[1] == "":
+            li = ("147516", ",", li[0])
 
         if li[0] == "147571":
-          r.send(r.buildReply(event.message_id, "Sorry, I'm afraid I can't do that."))
-        else:                  
-          g = bot.joinRoom(int(li[0]))
-          g.send(event.user_name + ": " + li[2])
-          g.on(Events.MESSAGE, remote)
-          r.send(r.buildReply(event.message_id, "Message sent."))
+            r.send(r.buildReply(event.message_id, "Sorry, I'm afraid I can't do that."))
+        else:
+            g = bot.joinRoom(int(li[0]))
+            g.send(event.user_name + ": " + li[2])
+            g.on(Events.MESSAGE, remote)
+            r.send(r.buildReply(event.message_id, "Message sent."))
     elif event.content == "getsource":
         r.send(
             r.buildReply(
@@ -109,7 +110,8 @@ def msg(event):
         ]
         r.send(
             r.buildReply(
-                event.message_id, "Here are the available commands for this bot and their structures:"
+                event.message_id,
+                "Here are the available commands for this bot and their structures:",
             )
         )
         r.send("\n".join(commands))
@@ -133,9 +135,9 @@ try:
     counter = 0
     r.send("Bot has started.")
     while True:
-      print("Bot is running. Seconds since start: {}".format(counter))
-      time.sleep(1)
-      counter += 1
+        print("Bot is running. Seconds since start: {}".format(counter))
+        time.sleep(1)
+        counter += 1
 finally:
-  r.send("Bot has stopped for updates.")
-  bot.leaveAllRooms()
+    r.send("Bot has stopped for updates.")
+    bot.leaveAllRooms()
