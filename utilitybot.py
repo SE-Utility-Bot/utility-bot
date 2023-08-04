@@ -123,10 +123,10 @@ def roomer(r):
                 r.buildReply(
                     event.message_id,
                     indent(
-                        "Here are the available commands for this bot and their structures:\n\n"
+                        "\nHere are the available commands for this bot and their structures:\n\n"
                         + (
                             "\n".join(
-                                f"â€¢ {x}: {commands[x]}" for x in commands.keys()
+                                f"{ord(8226)} {x}: {commands[x]}" for x in commands.keys()
                             )
                         )
                     ),
@@ -150,7 +150,7 @@ def roomer(r):
                 r.buildReply(
                     event.message_id,
                     indent(
-                        "Here is the source code of the HTML webpage:\n\n"
+                        "\nHere is the source code of the HTML webpage:\n\n"
                         + urlopen(event.content[10:]).read().decode("utf-8")
                     ),
                 )
