@@ -13,6 +13,7 @@ bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
 r = bot.joinRoom(1)
 t = bot.joinRoom(147676)
+priv = bot.joinRoom(147571)
 bot.joinRoom(147516).send("No freezing!")
 
 
@@ -160,10 +161,11 @@ def roomer(r):
 
 r.on(Events.MESSAGE, roomer(r))
 t.on(Events.MESSAGE, roomer(t))
-print("Startup Successful.")
+priv.on(Events.MESSAGE, roomer(priv))
 
 try:
     counter = 0
+    print("Startup Successful.")
     r.send("Bot has started.")
     t.send("Bot has started.")
     while True:
