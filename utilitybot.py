@@ -117,8 +117,10 @@ def msg(event):
         r.send(
             r.buildReply(
                 event.message_id,
-                indent("Here are the available commands for this bot and their structures:\n\n"
-                + ("\n".join(f"• {x}: {commands[x]}" for x in commands.keys()))),
+                indent(
+                    "Here are the available commands for this bot and their structures:\n\n"
+                    + ("\n".join(f"• {x}: {commands[x]}" for x in commands.keys()))
+                ),
             )
         )
     elif event.content == "emptystring":
@@ -136,8 +138,10 @@ def msg(event):
         r.send(
             r.buildReply(
                 event.message_id,
-                indent("Here is the source code of the HTML webpage:\n\n"
-                + urlopen(event.content[10:]).read().decode("utf-8")),
+                indent(
+                    "Here is the source code of the HTML webpage:\n\n"
+                    + urlopen(event.content[10:]).read().decode("utf-8")
+                ),
             )
         )
 
