@@ -112,7 +112,7 @@ def msg(event):
             "• emptystring",
             "• help",
             "• op",
-            "• wscr <URL>",
+            "• webscrape <URL>",
         ]
         r.send(
             r.buildReply(
