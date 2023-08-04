@@ -12,6 +12,7 @@ from urllib.request import urlopen
 bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
 r = bot.joinRoom(1)
+t = bot.joinRoom(147676)
 bot.joinRoom(147516).send("No freezing!")
 
 
@@ -147,11 +148,13 @@ def msg(event):
 
 
 r.on(Events.MESSAGE, msg)
+t.on(Events.MESSAGE, msg)
 print("Startup Successful.")
 
 try:
     counter = 0
     r.send("Bot has started.")
+    t.send("Bot has started.")
     while True:
         print("Bot is running. Seconds since start: {}".format(counter))
         time.sleep(1)
