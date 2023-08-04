@@ -32,9 +32,8 @@ class Tests(metaclass=meta):
     """
 
     def test_start():
-        ROOM.send(
-            "Bot is being tested. Do not send any messages until otherwise stated by me, or The Empty String Photographer."
-        )
+        MSG = "Bot is being tested. Do not send any messages until otherwise stated by me, or The Empty String Photographer."
+        ROOM.send(MSG)
         message = ROOM.getRecentMessages()[-1]
         assert message["content"] == MSG and message["user_id"] == BOT_ID
 
