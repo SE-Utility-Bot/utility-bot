@@ -111,6 +111,7 @@ def msg(event):
             "• emptystring",
             "• help",
             "• op",
+            "• wscr <URL>",
         ]
         r.send(
             r.buildReply(
@@ -132,7 +133,7 @@ def msg(event):
         r.send(r.buildReply(event.message_id, "All systems operational."))
     elif event.content[:5] == "wscr ":
         r.send(r.buildReply(event.message_id, "Here is the source code of the HTML webpage:"))
-        r.send(urlopen(event.content[5:]).read().decode('utf-8'))
+        r.send(indent(urlopen(event.content[5:]).read().decode('utf-8')))
 
 r.on(Events.MESSAGE, msg)
 print("Startup Successful.")
