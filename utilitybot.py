@@ -14,8 +14,9 @@ bot.login(sys.argv[1], sys.argv[2])
 r = bot.joinRoom(1)
 bot.joinRoom(147516).send("No freezing!")
 
+
 def indent(string):
-    return '\n'.join('    ' + x for x in string.split('\n'))
+    return "\n".join("    " + x for x in string.split("\n"))
 
 
 def remote(event):
@@ -132,8 +133,13 @@ def msg(event):
     elif event.content == "op":
         r.send(r.buildReply(event.message_id, "All systems operational."))
     elif event.content[:5] == "wscr ":
-        r.send(r.buildReply(event.message_id, "Here is the source code of the HTML webpage:"))
-        r.send(indent(urlopen(event.content[5:]).read().decode('utf-8')))
+        r.send(
+            r.buildReply(
+                event.message_id, "Here is the source code of the HTML webpage:"
+            )
+        )
+        r.send(indent(urlopen(event.content[5:]).read().decode("utf-8")))
+
 
 r.on(Events.MESSAGE, msg)
 print("Startup Successful.")
