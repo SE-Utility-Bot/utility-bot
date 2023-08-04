@@ -132,13 +132,14 @@ def msg(event):
         )
     elif event.content == "op":
         r.send(r.buildReply(event.message_id, "All systems operational."))
-    elif event.content[:5] == "wscr ":
+    elif event.content[:10] == "webscrape ":
         r.send(
             r.buildReply(
-                event.message_id, "Here is the source code of the HTML webpage:"
+                event.message_id,
+                "Here is the source code of the HTML webpage:\n\n"
+                + indent(urlopen(event.content[10:]).read().decode("utf-8")),
             )
         )
-        r.send(indent(urlopen(event.content[5:]).read().decode("utf-8")))
 
 
 r.on(Events.MESSAGE, msg)
