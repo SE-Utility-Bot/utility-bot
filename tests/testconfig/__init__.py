@@ -10,7 +10,7 @@ TESTING_ROOM = 147571
 BOT_ID = 576644
 BOT = sechat.Bot()
 BOT.login(EMAIL, PASSWORD)
-ROOM = BOT.joinRoom(1)
+ROOM = BOT.joinRoom(147571)
 
 
 def meta(a, b, c):
@@ -31,18 +31,12 @@ class Tests(metaclass=meta):
     Every function must take no arguments, not even the self argument.
     """
 
-    def test_message_send():
-        p = BOT.joinRoom(TESTING_ROOM)
-        MSG = "The bot is undergoing a test. Please do not send any messages until said otherwise."
-        p.send(MSG)
-        message = p.getRecentMessages()[-1]
-        p.send("You may now send messages.")
-        assert message["content"] == MSG and message["user_id"] == BOT_ID
-
     def test_start():
         ROOM.send(
             "Bot is being tested. Do not send any messages until otherwise stated by me, or The Empty String Photographer."
         )
+        message = ROOM.getRecentMessages()[-1]
+        assert message["content"] == MSG and message["user_id"] == BOT_ID
 
     def test_echo():
         hext = secrets.token_hex(16)
