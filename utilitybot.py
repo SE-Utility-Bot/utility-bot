@@ -111,7 +111,7 @@ def msg(event):
             "getcmd": "Lists the commands with their descriptions.",
             "emptystring": "Sends a picture of an empty string.",
             "help": "Shows some information.",
-            "op": 'Replies with the message "All systems operational!". Exists to quickly check whether the bot is running.',
+            "op": 'Replies with the message "All systems operational.". Exists to quickly check whether the bot is running.',
             "webscrape <URL>": "Sends the HTML content of the specified URL.",
         }
         r.send(
