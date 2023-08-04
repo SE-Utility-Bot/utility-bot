@@ -135,7 +135,9 @@ def msg(event):
     elif event.content[:10] == "webscrape ":
         r.send(
             r.buildReply(
-                event.message_id, "Here is the source code of the HTML webpage:\n\n" + indent(urlopen(event.content[10:]).read().decode("utf-8"))
+                event.message_id,
+                "Here is the source code of the HTML webpage:\n\n"
+                + indent(urlopen(event.content[10:]).read().decode("utf-8")),
             )
         )
 
