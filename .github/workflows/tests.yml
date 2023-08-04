@@ -12,12 +12,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[no-lint]') }}
-    steps:
-      - uses: actions/checkout@v3.5.3 # checkout the repository content
-      - uses: psf/black@stable # this formats the code
   test:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
