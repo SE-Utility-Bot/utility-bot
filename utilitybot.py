@@ -145,7 +145,7 @@ def roomer(r):
                   ),
               )
           )
-    return msg
+  return msg
 
 r.on(Events.MESSAGE, roomer(r))
 t.on(Events.MESSAGE, roomer(t))
