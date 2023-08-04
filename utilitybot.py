@@ -111,13 +111,14 @@ def msg(event):
             "getcmd": "Lists the commands with their descriptions.",
             "emptystring": "Sends a picture of an empty string.",
             "help": "Shows some information.",
-            "op": "Replies with the message \"All systems operational!\". Exists to quickly check whether the bot is running.",
+            "op": 'Replies with the message "All systems operational!". Exists to quickly check whether the bot is running.',
             "webscrape <URL>": "Sends the HTML content of the specified URL.",
         }
         r.send(
             r.buildReply(
                 event.message_id,
-                "Here are the available commands for this bot and their structures:\n\n"+("\n".join(f'• {x}: {commands[x]}' for x in commands.keys())),
+                "Here are the available commands for this bot and their structures:\n\n"
+                + ("\n".join(f"• {x}: {commands[x]}" for x in commands.keys())),
             )
         )
     elif event.content == "emptystring":
