@@ -8,7 +8,7 @@ PASSWORD = sys.argv[2]
 EVENT_NAME = sys.argv[3]
 EVENT_USER = sys.argv[4]
 
-cleaned = re.sub(r"\[.*\]", "",EVENT_USER)
+cleaned = re.sub(r"\[.*\]", "", EVENT_USER)
 
 bot = sechat.Bot()
 bot.login(EMAIL, PASSWORD)
