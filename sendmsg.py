@@ -10,4 +10,5 @@ bot = sechat.Bot()
 bot.login(EMAIL, PASSWORD)
 r = bot.joinRoom(147676)
 
-r.send(f'Event "{EVENT_NAME}" occured. Data: {EVENT_DATA}')
+with open(EVENT_DATA) as f:
+  r.send(f'Event "{EVENT_NAME}" occured.\nData:\n\n{f.read()}')
