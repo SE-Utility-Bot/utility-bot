@@ -126,7 +126,8 @@ def roomer(r):
                         "\nHere are the available commands for this bot and their structures:\n\n"
                         + (
                             "\n".join(
-                                f"{chr(8226)} {x}: {commands[x]}" for x in commands.keys()
+                                f"{chr(8226)} {x}: {commands[x]}"
+                                for x in commands.keys()
                             )
                         )
                     ),
