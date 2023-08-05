@@ -14,4 +14,5 @@ r = bot.joinRoom(147676)
 def indent(text):
     return "\n".join("    " + x for x in text.split("\n"))
 
+
 r.send(indent(f'Event "{EVENT_NAME}" was triggered by user {EVENT_USER}'))
