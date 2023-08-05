@@ -1,5 +1,6 @@
 import sechat
 import sys
+from urllib.parse import quote
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
@@ -16,5 +17,5 @@ def indent(text):
 
 
 r.send(
-    f'Event "{EVENT_NAME}" was triggered by {f"[{EVENT_USER}](https://github.com/{EVENT_USER})"}.'
+    f'Event "{EVENT_NAME}" was triggered by {f"[{EVENT_USER}](https://github.com/{quote(EVENT_USER)})"}.'
 )
