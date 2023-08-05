@@ -15,4 +15,4 @@ jobs:
           python3 -m pip install -r requirements.txt
 
       - name: Send Message
-        run: python3 sendmsg.py ${{ secrets.BOT_EMAIL }} ${{ secrets.BOT_PASSWORD }} ${{ github.event_name }} ${{ github.event_path }}
+        run: python3 sendmsg.py ${{ secrets.BOT_EMAIL }} ${{ secrets.BOT_PASSWORD }} ${{ github.event_name }} ${{ github.actor }}
