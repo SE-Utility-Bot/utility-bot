@@ -10,8 +10,10 @@ bot = sechat.Bot()
 bot.login(EMAIL, PASSWORD)
 r = bot.joinRoom(147676)
 
+
 def indent(text):
-    return '\n'.join('    ' + x for x in text.split('\n'))
+    return "\n".join("    " + x for x in text.split("\n"))
+
 
 with open(EVENT_DATA) as f:
     data = f.read()
