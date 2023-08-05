@@ -11,4 +11,4 @@ bot.login(EMAIL, PASSWORD)
 r = bot.joinRoom(147676)
 
 with open(EVENT_DATA) as f:
-  r.send(f'Event "{EVENT_NAME}" occured.\nData:\n\n{f.read()}')
+    r.send(f'Event "{EVENT_NAME}" occured.\nData:\n\n{f.read()}')
