@@ -15,4 +15,4 @@ def indent(text):
     return "\n".join("    " + x for x in text.split("\n"))
 
 
-r.send(indent(f'Event "{EVENT_NAME}" was triggered by {f"[{EVENT_USER}](https://github.com/{EVENT_USER})"}.'))
+r.send(f'Event "{EVENT_NAME}" was triggered by {f"[{EVENT_USER}](https://github.com/{EVENT_USER})"}.')
