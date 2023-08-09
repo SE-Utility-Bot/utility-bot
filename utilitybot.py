@@ -120,7 +120,8 @@ def roomer(r):
                 "webscrape <URL>": "                Sends the HTML content of the specified URL.",
             }
             if len(event.content) > 6:
-                r.send(
+                try:
+                    r.send(
                     r.buildReply(
                         event.message_id,
                         "`"
@@ -135,6 +136,8 @@ def roomer(r):
                         + commands[result],
                     )
                 )
+                except IndexError:
+                    r.send(r.buildReply(event.message_id, "Command does not exist."))
             else:
                 r.send(
                     indent(
