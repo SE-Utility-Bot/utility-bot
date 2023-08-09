@@ -123,13 +123,15 @@ def roomer(r):
                 r.send(
                     r.buildReply(
                         event.message_id,
-                        "`"+(
+                        "`"
+                        + (
                             result := [
                                 x
                                 for x in commands.keys()
                                 if re.match(event.content.partition(" ")[2], x)
                             ][0]
-                        )+"`: "
+                        )
+                        + "`: "
                         + commands[result],
                     )
                 )
