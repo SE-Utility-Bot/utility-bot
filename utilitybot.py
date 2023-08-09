@@ -136,14 +136,13 @@ def roomer(r):
             else:
                 r.send(
                     indent(
-                            f"@{event.user_name}\nHere are the available commands for this bot and their structures:\n\n"
-                            + (
-                                "\n".join(
-                                    f"{chr(8226)} {x}: {commands[x]}"
-                                    for x in commands.keys()
-                                )
-                            ),
-                        
+                        f"@{event.user_name}\nHere are the available commands for this bot and their structures:\n\n"
+                        + (
+                            "\n".join(
+                                f"{chr(8226)} {x}: {commands[x]}"
+                                for x in commands.keys()
+                            )
+                        ),
                     )
                 )
         elif event.content == "emptystring":
