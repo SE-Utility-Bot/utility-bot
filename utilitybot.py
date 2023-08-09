@@ -120,21 +120,34 @@ def roomer(r):
                 "webscrape <URL>": "                Sends the HTML content of the specified URL.",
             }
             if len(event.content) > 6:
-                r.send(r.buildReply(event.message_id, (result := [x for x in commands.keys() if re.match(event.content.partition(' ')[2], x)][0]) + commands[result]))
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        (
+                            result := [
+                                x
+                                for x in commands.keys()
+                                if re.match(event.content.partition(" ")[2], x)
+                            ][0]
+                        )
+                        + commands[result],
+                    )
+                )
             else:
                 r.send(
-                indent(r.buildReply(
-                    event.message_id,
-                        "\nHere are the available commands for this bot and their structures:\n\n"
-                        + (
-                            "\n".join(
-                                f"{chr(8226)} {x}: {commands[x]}"
-                                for x in commands.keys()
-                            )
-                        ),
+                    indent(
+                        r.buildReply(
+                            event.message_id,
+                            "\nHere are the available commands for this bot and their structures:\n\n"
+                            + (
+                                "\n".join(
+                                    f"{chr(8226)} {x}: {commands[x]}"
+                                    for x in commands.keys()
+                                )
+                            ),
+                        )
+                    )
                 )
-            )
-            )
         elif event.content == "emptystring":
             r.send(
                 r.buildReply(event.message_id, "https://i.stack.imgur.com/Fh2Cq.png")
