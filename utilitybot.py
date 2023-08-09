@@ -122,20 +122,20 @@ def roomer(r):
             if len(event.content) > 6:
                 try:
                     r.send(
-                    r.buildReply(
-                        event.message_id,
-                        "`"
-                        + (
-                            result := [
-                                x
-                                for x in commands.keys()
-                                if re.match(event.content.partition(" ")[2], x)
-                            ][0]
+                        r.buildReply(
+                            event.message_id,
+                            "`"
+                            + (
+                                result := [
+                                    x
+                                    for x in commands.keys()
+                                    if re.match(event.content.partition(" ")[2], x)
+                                ][0]
+                            )
+                            + "`: "
+                            + commands[result],
                         )
-                        + "`: "
-                        + commands[result],
                     )
-                )
                 except IndexError:
                     r.send(r.buildReply(event.message_id, "Command does not exist."))
             else:
