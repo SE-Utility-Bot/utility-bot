@@ -105,7 +105,7 @@ def roomer(r):
                     "https://github.com/PlaceReporter99/utility-bot/blob/main/utilitybot.py",
                 )
             )
-        elif event.content == "getcmd":
+        elif event.content[:6] == "getcmd":
             commands = {
                 "echo <message>": "                 Sends the message given to it.",
                 "echochr <character number>": "     Sends the unicode character with the codepoint of the number given to it. Must be in base 10.",
@@ -119,20 +119,35 @@ def roomer(r):
                 "op": '                             Replies with the message "All systems operational.". Exists to quickly check whether the bot is running.',
                 "webscrape <URL>": "                Sends the HTML content of the specified URL.",
             }
-            r.send(
-                r.buildReply(
-                    event.message_id,
-                    indent(
-                        "\nHere are the available commands for this bot and their structures:\n\n"
-                        + (
-                            "\n".join(
-                                f"{chr(8226)} {x}: {commands[x]}"
+            if len(event.content) > 6:
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        (
+                            result := [
+                                x
                                 for x in commands.keys()
-                            )
+                                if re.match(event.content.partition(" ")[2], x)
+                            ][0]
                         )
-                    ),
+                        + commands[result],
+                    )
                 )
-            )
+            else:
+                r.send(
+                    indent(
+                        r.buildReply(
+                            event.message_id,
+                            "\nHere are the available commands for this bot and their structures:\n\n"
+                            + (
+                                "\n".join(
+                                    f"{chr(8226)} {x}: {commands[x]}"
+                                    for x in commands.keys()
+                                )
+                            ),
+                        )
+                    )
+                )
         elif event.content == "emptystring":
             r.send(
                 r.buildReply(event.message_id, "https://i.stack.imgur.com/Fh2Cq.png")
