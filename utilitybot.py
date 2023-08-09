@@ -113,7 +113,7 @@ def roomer(r):
                 "ping <user name>": "               Pings the person with the username that was passed to it.",
                 "remotesay <room>, <message>": "    Sends a message in the specified room ID. If no room ID is given, the room defaults to Sandbox 2.",
                 "getsource": "                      Sends a link to the source code.",
-                "getcmd": "                         Lists the commands with their descriptions.",
+                "getcmd <command>": "               Sends the command description. If no command is given, it lists the commands with their descriptions instead.",
                 "emptystring": "                    Sends a picture of an empty string.",
                 "help": "                           Shows some information.",
                 "op": '                             Replies with the message "All systems operational.". Exists to quickly check whether the bot is running.',
