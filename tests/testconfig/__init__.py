@@ -9,7 +9,7 @@ PASSWORD = sys.argv[2]
 BOT_ID = 576644
 BOT = sechat.Bot()
 BOT.login(EMAIL, PASSWORD)
-ROOM = BOT.joinRoom(147805)
+ROOM = BOT.joinRoom(147571)
 
 
 def meta(a, b, c):
