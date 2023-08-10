@@ -179,11 +179,12 @@ def roomer(r):
 
     return msg
 
+
 if main_:
     r.on(Events.MESSAGE, roomer(r))
     t.on(Events.MESSAGE, roomer(t))
     priv.on(Events.MESSAGE, roomer(priv))
-    
+
     try:
         counter = 0
         print("Startup Successful.")
