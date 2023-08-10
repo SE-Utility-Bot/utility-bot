@@ -6,11 +6,10 @@ import re
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
-TESTING_ROOM = 147571
 BOT_ID = 576644
 BOT = sechat.Bot()
 BOT.login(EMAIL, PASSWORD)
-ROOM = BOT.joinRoom(147571)
+ROOM = BOT.joinRoom(147805)
 
 
 def meta(a, b, c):
