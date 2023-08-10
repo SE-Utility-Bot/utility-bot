@@ -22,4 +22,4 @@ jobs:
           python3 -m pip install -r requirements.txt
 
       - name: Run bot
-        run: python3 manual_test.py
+        run: python3 manual_test.py ${{ secrets.BOT_EMAIL }} ${{ secrets.BOT_PASSWORD }}
