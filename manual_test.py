@@ -11,7 +11,7 @@ r.send("@TheE PR test deployed. You have 6 hours to test it.")
 r.on(Events.MESSAGE, roomer(r))
 
 try:
-  while True:
-    pass
+    while True:
+        pass
 finally:
-  bot.leaveAllRooms()
+    bot.leaveAllRooms()
