@@ -6,7 +6,6 @@ import re
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
-TESTING_ROOM = 147571
 BOT_ID = 576644
 BOT = sechat.Bot()
 BOT.login(EMAIL, PASSWORD)
