@@ -1,6 +1,7 @@
 from utilitybot import roomer
 import sechat
 from sechat.events import Events
+import sys
 
 bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
