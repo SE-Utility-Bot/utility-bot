@@ -75,12 +75,13 @@ def roomer(r):
                 def calculate():
                     nonlocal string
                     nonlocal result
-                    nonlocal process
                     result.append(eval(string))
-
+                calculate()
+"""
                 process = multiprocessing.Process(target=calculate)
                 process.start()
-                time.sleep(10)
+                process.join(10)
+                
                 if process.is_alive():
                     process.kill()
                     r.send(
@@ -90,11 +91,12 @@ def roomer(r):
                         )
                     )
                 else:
-                    r.send(
-                        r.buildReply(
-                            event.message_id, "The answer is " + result[0] + "."
-                        )
+                """
+                r.send(
+                    r.buildReply(
+                        event.message_id, "The answer is " + result[0] + "."
                     )
+                )
             else:
                 r.send(
                     r.buildReply(
