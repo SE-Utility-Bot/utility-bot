@@ -77,11 +77,10 @@ def roomer(r):
                     nonlocal result
                     nonlocal process
                     result.append(eval(string))
-                    process.terminate()
 
                 process = multiprocessing.Process(target=calculate)
                 process.start()
-                process.join(10)
+                time.sleep(10)
                 if process.is_alive():
                     process.kill()
                     r.send(
