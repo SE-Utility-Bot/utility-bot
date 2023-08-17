@@ -71,16 +71,22 @@ def roomer(r):
             val = set(string)
             result = []
             if val.issubset(allowed):
+
                 def calculate():
                     nonlocal string
                     nonlocal result
                     result.append(eval(string))
+
                 process = multiprocessing.Process(target=calculate)
                 process.start()
                 p.join(10)
                 if p.is_alive():
                     p.kill()
-                    r.send(r.buildReply(event.message_id, "Calculation took more than 10 seconds."))
+                    r.send(
+                        r.buildReply(
+                            event.message_id, "Calculation took more than 10 seconds."
+                        )
+                    )
                 else:
                     r.send(
                         r.buildReply(
