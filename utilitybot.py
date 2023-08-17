@@ -76,22 +76,9 @@ def roomer(r):
                     nonlocal string
                     nonlocal result
                     result.append(eval(string))
+                
                 calculate()
-"""
-                process = multiprocessing.Process(target=calculate)
-                process.start()
-                process.join(10)
 
-                if process.is_alive():
-                    process.kill()
-                    r.send(
-                        r.buildReply(
-                            event.message_id,
-                            "Sorry, but the calculation took more than 10 seconds.",
-                        )
-                    )
-                else:
-                """
                 r.send(
                     r.buildReply(
                         event.message_id, "The answer is " + result[0] + "."
