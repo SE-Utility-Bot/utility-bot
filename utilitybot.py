@@ -81,7 +81,7 @@ def roomer(r):
                 process = multiprocessing.Process(target=calculate)
                 process.start()
                 process.join(10)
-                
+
                 if process.is_alive():
                     process.kill()
                     r.send(
