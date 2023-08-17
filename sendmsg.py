@@ -2,7 +2,7 @@ import sechat
 import sys
 import re
 from urllib.parse import quote
-
+ 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
 EVENT_NAME = sys.argv[3]
