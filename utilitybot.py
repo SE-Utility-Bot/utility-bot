@@ -84,7 +84,7 @@ def roomer(r):
                     process.kill()
                     r.send(
                         r.buildReply(
-                            event.message_id, "Calculation took more than 10 seconds."
+                            event.message_id, "Sorry, but the calculation took more than 10 seconds."
                         )
                     )
                 else:
