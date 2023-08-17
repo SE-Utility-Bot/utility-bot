@@ -7,6 +7,7 @@ import time
 import re
 import decimal
 import datetime
+import multiprocessing
 from urllib.request import urlopen
 
 main_ = __name__ == "__main__"
@@ -68,12 +69,31 @@ def roomer(r):
             }
             string = html.unescape(event.content[5:])
             val = set(string)
+            result = []
             if val.issubset(allowed):
-                r.send(
-                    r.buildReply(
-                        event.message_id, "The answer is " + str(eval(string)) + "."
+
+                def calculate():
+                    nonlocal string
+                    nonlocal result
+                    result.append(eval(string))
+
+                process = multiprocessing.Process(target=calculate)
+                process.start()
+                process.join(10)
+                if process.is_alive():
+                    process.kill()
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            "Sorry, but the calculation took more than 10 seconds.",
+                        )
                     )
-                )
+                else:
+                    r.send(
+                        r.buildReply(
+                            event.message_id, "The answer is " + result[0] + "."
+                        )
+                    )
             else:
                 r.send(
                     r.buildReply(
