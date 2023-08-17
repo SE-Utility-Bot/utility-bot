@@ -81,7 +81,7 @@ def roomer(r):
 
                 r.send(
                     r.buildReply(
-                        event.message_id, "The answer is " + result[0] + "."
+                        event.message_id, "The answer is " + str(result[0]) + "."
                     )
                 )
             else:
