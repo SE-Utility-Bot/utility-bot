@@ -79,9 +79,9 @@ def roomer(r):
 
                 process = multiprocessing.Process(target=calculate)
                 process.start()
-                p.join(10)
-                if p.is_alive():
-                    p.kill()
+                process.join(10)
+                if process.is_alive():
+                    process.kill()
                     r.send(
                         r.buildReply(
                             event.message_id, "Calculation took more than 10 seconds."
