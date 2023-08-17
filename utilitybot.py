@@ -75,8 +75,9 @@ def roomer(r):
                 def calculate():
                     nonlocal string
                     nonlocal result
+                    nonlocal process
                     result.append(eval(string))
-                    return
+                    process.terminate()
 
                 process = multiprocessing.Process(target=calculate)
                 process.start()
