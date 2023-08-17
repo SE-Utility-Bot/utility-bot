@@ -18,7 +18,7 @@ if main_:
     r = bot.joinRoom(1)
     t = bot.joinRoom(147676)
     priv = bot.joinRoom(147571)
-    bot.joinRoom(147516).send("No freezing!")
+    sb2 = bot.joinRoom(147516)
 
 
 def indent(string):
@@ -194,12 +194,15 @@ if main_:
     r.on(Events.MESSAGE, roomer(r))
     t.on(Events.MESSAGE, roomer(t))
     priv.on(Events.MESSAGE, roomer(priv))
+    sb2.on(Events.MESSAGE, roomer(sb2))
 
     try:
         counter = 0
         print("Startup Successful.")
         r.send("Bot has started.")
         t.send("Bot has started.")
+        priv.send("Bot has started.")
+        sb2.send("Bot has started. No freezing!")
         while True:
             print("Bot is running. Seconds since start: {}".format(counter))
             time.sleep(1)
