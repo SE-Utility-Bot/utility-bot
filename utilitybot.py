@@ -7,7 +7,7 @@ import time
 import re
 import decimal
 import datetime
-import multiprocessing
+import stopit
 from urllib.request import urlopen
 
 main_ = __name__ == "__main__"
@@ -69,21 +69,15 @@ def roomer(r):
             }
             string = html.unescape(event.content[5:])
             val = set(string)
-            result = []
             if val.issubset(allowed):
-
-                def calculate():
-                    nonlocal string
-                    nonlocal result
-                    result.append(eval(string))
-                
-                calculate()
-
-                r.send(
-                    r.buildReply(
-                        event.message_id, "The answer is " + str(result[0]) + "."
+                with stopit.ThreadingTimeout(10) as mgr:
+                    r.send(
+                        r.buildReply(
+                            event.message_id, "The answer is " + str(result[0]) + "."
+                        )
                     )
-                )
+                if mgr.state == mgr.TIMED_OUT:
+                    r.send(r.buildReply(event.message_id, "Sorry, but the calculation took too long."))
             else:
                 r.send(
                     r.buildReply(
