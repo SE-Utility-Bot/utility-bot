@@ -207,7 +207,7 @@ def roomer(r):
                     r.buildReply(
                         event.message_id,
                         "Here are your random numbers: "
-                        + str([(args[1] * x) // 255 for x in os.urandom(args[0])]),
+                        + str([a if (a := ((args[1] + 1) * x) // 255) else args[1] for x in os.urandom(args[0])]),
                     )
                 )
             elif len(args) == 3:
