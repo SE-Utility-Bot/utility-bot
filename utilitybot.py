@@ -76,7 +76,7 @@ def roomer(r):
                     nonlocal string
                     nonlocal result
                     result.append(eval(string))
-                
+
                 calculate()
 
                 r.send(
@@ -188,13 +188,35 @@ def roomer(r):
                 )
             )
         elif event.content[:7] == "random ":
-            args = [int(x) for x in event.content[7:].split(',')]
+            args = [int(x) for x in event.content[7:].split(",")]
             if len(args) == 1:
-                r.send(r.buildReply(event.message_id, "Here are your random numbers: " + str([*os.urandom(args[0])])))
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        "Here are your random numbers: " + str([*os.urandom(args[0])]),
+                    )
+                )
             elif len(args) == 2:
-                r.send(r.buildReply(event.message_id, "Here are your random numbers: " + str([(args[1] * x) // 255 for x in os.urandom(args[0])])))
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        "Here are your random numbers: "
+                        + str([(args[1] * x) // 255 for x in os.urandom(args[0])]),
+                    )
+                )
             elif len(args) == 3:
-                r.send(r.buildReply(event.message_id, "Here are your random numbers: " + str([(((args[2] - args[1]) * x) // 255) + args[1] for x in os.urandom(args[0])])))
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        "Here are your random numbers: "
+                        + str(
+                            [
+                                (((args[2] - args[1]) * x) // 255) + args[1]
+                                for x in os.urandom(args[0])
+                            ]
+                        ),
+                    )
+                )
 
     return msg
 
