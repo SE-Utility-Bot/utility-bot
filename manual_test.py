@@ -2,6 +2,7 @@ from utilitybot import roomer
 import sechat
 from sechat.events import Events
 import sys
+import time
 
 bot = sechat.Bot()
 bot.login(sys.argv[1], sys.argv[2])
@@ -12,6 +13,7 @@ r.on(Events.MESSAGE, roomer(r))
 
 try:
     while True:
-        pass
+        print("Bot is running")
+        time.sleep(5)
 finally:
     bot.leaveAllRooms()
