@@ -131,7 +131,7 @@ def roomer(r):
                 "help": "                                Shows some information.",
                 "op": '                                  Replies with the message "All systems operational.". Exists to quickly check whether the bot is running.',
                 "webscrape <URL>": "                     Sends the HTML content of the specified URL.",
-                "random <quantity>, <start>, <end>": "   Sends the specified number of random numbers in the inclusive range (using os.urandom). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>.",
+                "random <quantity>, <start>, <end>": "   Sends the specified number of random numbers in the inclusive range (using os.urandom). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>. Maximum argument value is 1000 for <quantity> and 10 ** 24 for all other numbers.",
             }
             if len(event.content) > 6:
                 try:
@@ -189,7 +189,7 @@ def roomer(r):
             )
         elif event.content[:7] == "random ":
             args = [int(x) for x in event.content[7:].split(",")]
-            if args[0] > 100 or any(x > 1000 for x in args):
+            if args[0] > 1000 or any(x > 1000000000000000000000000 for x in args):
                 r.send(
                     r.buildReply(
                         event.message_id, "Sorry, that will probably take me too long."
