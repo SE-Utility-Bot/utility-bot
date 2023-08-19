@@ -73,7 +73,7 @@ def roomer(r):
                 with stopit.ThreadingTimeout(10) as mgr:
                     r.send(
                         r.buildReply(
-                            event.message_id, "The answer is " + str(result[0]) + "."
+                            event.message_id, "The answer is " + str(eval(string)) + "."
                         )
                     )
                 if mgr.state == mgr.TIMED_OUT:
