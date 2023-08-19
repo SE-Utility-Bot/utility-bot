@@ -71,12 +71,16 @@ def roomer(r):
             val = set(string)
             if val.issubset(allowed):
                 with stopit.ThreadingTimeout(10) as mgr:
+                    assert mgr.state == mgr.EXECUTING
+                    result = str(eval(string))
+                
+                if mgr.state != mgr.TIMED_OUT:
                     r.send(
                         r.buildReply(
-                            event.message_id, "The answer is " + str(eval(string)) + "."
+                            event.message_id, "The answer is " + result + "."
                         )
                     )
-                if mgr.state == mgr.TIMED_OUT:
+                else:
                     r.send(
                         r.buildReply(
                             event.message_id,
