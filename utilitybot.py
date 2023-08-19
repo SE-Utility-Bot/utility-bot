@@ -131,7 +131,7 @@ def roomer(r):
                 "help": "                                Shows some information.",
                 "op": '                                  Replies with the message "All systems operational.". Exists to quickly check whether the bot is running.',
                 "webscrape <URL>": "                     Sends the HTML content of the specified URL.",
-                "random <quantity>, <start>, <end>": "   Sends the specified number of random numbers in the inclusive range (using os.urandom). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>. Maximum argument value is 1000 for <quantity> and 10 ** 24 for all other numbers.",
+                "random <quantity>, <start>, <end>": "   Sends the specified number of random numbers in the inclusive range (using os.urandom). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>. Maximum argument value is 1000 for <quantity> and 10 ** 24 for all other numbers. The numbers lose a little bit of accuracy as the number of possible numbers go up.",
             }
             if len(event.content) > 6:
                 try:
