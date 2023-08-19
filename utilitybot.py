@@ -209,7 +209,7 @@ def roomer(r):
                         "Here are your random numbers: "
                         + str(
                             [
-                                a if (a := ((args[1] + 1) * x) // 255) else args[1]
+                                a if (a := ((args[1] + 1) * x) // 255) <= args[1] else args[1]
                                 for x in os.urandom(args[0])
                             ]
                         ),
