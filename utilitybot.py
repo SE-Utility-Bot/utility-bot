@@ -243,7 +243,6 @@ if main_:
     try:
         counter = 0
         print("Startup Successful.")
-        r.send("Bot has started.")
         t.send("Bot has started.")
         priv.send("Bot has started.")
         sb2.send("Bot has started. No freezing!")
