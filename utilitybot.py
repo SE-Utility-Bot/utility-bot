@@ -77,7 +77,12 @@ def roomer(r):
                         )
                     )
                 if mgr.state == mgr.TIMED_OUT:
-                    r.send(r.buildReply(event.message_id, "Sorry, but the calculation took too long."))
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            "Sorry, but the calculation took too long.",
+                        )
+                    )
             else:
                 r.send(
                     r.buildReply(
