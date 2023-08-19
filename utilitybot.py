@@ -189,7 +189,7 @@ def roomer(r):
             )
         elif event.content[:7] == "random ":
             args = [int(x) for x in event.content[7:].split(",")]
-            if args[0] > 100 or any(x > 1000 for x in args):
+            if args[0] > 100 or any(x > 500 for x in args):
                 r.send(
                     r.buildReply(
                         event.message_id, "Sorry, that will probably take me too long."
