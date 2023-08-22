@@ -8,6 +8,7 @@ import re
 import decimal
 import datetime
 import multiprocessing
+import secrets
 from urllib.request import urlopen
 
 main_ = __name__ == "__main__"
@@ -231,6 +232,20 @@ def roomer(r):
                     )
                 )
 
+        elif event.content[:3] == "ai ":
+            with open("markov_speech.txt") as f:
+                dictionary = f.read().split('\n')
+            i = event.content[3:]
+            dictionary.extend(i.split())
+            dictionary.insert(0, i.split())
+            dictionary.insert(len(dictionary)//2, i.split())
+            en_dict = [*enumerate(dictionary)]
+            def next_word(word):
+                nonlocal en_dict
+                choices = [en_dict[x[0] + 1][1] for x in filter(lambda x: x[1] == word, en_dict)]
+                return secrets.choice(choices)
+            y = secrets.choice(dictionary)
+            r.send(r.buildReply(event.message_id, ' '.join((y := next_word(y) for _ in range(50)))))
     return msg
 
 
