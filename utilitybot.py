@@ -236,9 +236,9 @@ def roomer(r):
             with open("markov_speech.txt") as f:
                 dictionary = f.read().split("\n")
             i = event.content[3:]
-            dictionary.extend(i.split())
-            dictionary.insert(0, i.split())
-            dictionary.insert(len(dictionary) // 2, i.split())
+            dictionary.extend(i.split()[:secrets.choice(range(len(i)))])
+            dictionary.insert(0, i.split()[secrets.choice(range(len(i))):])
+            dictionary.insert(len(dictionary) // 2, i.split()[::secrets.choice(range(len(i//3)))])
             en_dict = [*enumerate(dictionary)]
 
             def next_word(word):
@@ -249,10 +249,10 @@ def roomer(r):
                 ]
                 return secrets.choice(choices)
 
-            y = secrets.choice(dictionary)
+            y = tuple(i.split())
             r.send(
                 r.buildReply(
-                    event.message_id, " ".join((y := next_word(y) for _ in range(50)))
+                    event.message_id, " ".join(secrets.choice(y := tuple(next_word(x) for x in y)) for _ in range(50))
                 )
             )
 
