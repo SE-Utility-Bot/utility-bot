@@ -71,19 +71,14 @@ def roomer(r):
             val = set(string)
             result = []
             if val.issubset(allowed):
-
-                def calculate():
-                    nonlocal string
-                    nonlocal result
-                    result.append(eval(string))
-
-                calculate()
-
-                r.send(
-                    r.buildReply(
-                        event.message_id, "The answer is " + str(result[0]) + "."
+                try:
+                    r.send(
+                        r.buildReply(
+                            event.message_id, "The answer is " + str(subprocess.check_output(["timeout", "-s", "SIGKILL", "10s", "python3", "calculate.py", string])) + "."
+                        )
                     )
-                )
+                except subprocess.CalledProcessError:
+                    r.send(r.buildReply(event.message_id, "Sorry, the calculation took longer than 10 seconds."))
             else:
                 r.send(
                     r.buildReply(
