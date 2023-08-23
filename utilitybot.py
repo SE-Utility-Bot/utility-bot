@@ -234,7 +234,7 @@ def roomer(r):
 
         elif event.content[:3] == "ai ":
             with open("ai_corpus.txt") as f:
-                dictionary = re.sub("<.*?>| ?@ ?","",f.read()).split()
+                dictionary = re.sub("<.*?>| ?@ ?", "", f.read()).split()
             i = event.content[3:]
             en_dict = [*enumerate(dictionary)]
 
