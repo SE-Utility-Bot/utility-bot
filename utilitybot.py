@@ -239,9 +239,7 @@ def roomer(r):
             dictionary.extend(i.split())
             for x in i.split():
                 dictionary.insert(0, x)
-                dictionary.insert(
-                    len(dictionary) // 2, x
-                )
+                dictionary.insert(len(dictionary) // 2, x)
             en_dict = [*enumerate(dictionary)]
 
             def next_word(word):
