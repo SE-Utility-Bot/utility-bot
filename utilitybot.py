@@ -88,7 +88,7 @@ def roomer(r):
                                     string,
                                 ]
                             )
-                            .decoce("utf-8")
+                            .decode("utf-8")
                             .replace("\n", ""),
                         )
                         + ".",
