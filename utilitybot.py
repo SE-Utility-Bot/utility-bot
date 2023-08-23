@@ -239,7 +239,7 @@ def roomer(r):
             dictionary.extend(i.split()[: secrets.choice(range(len(i)))])
             dictionary.insert(0, i.split()[secrets.choice(range(len(i))) :])
             dictionary.insert(
-                len(dictionary) // 2, i.split()[:: secrets.choice(range(len(i // 3)))]
+                len(dictionary) // 2, i.split()[:: secrets.choice(range(len(i) // 3))]
             )
             en_dict = [*enumerate(dictionary)]
 
