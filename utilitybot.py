@@ -245,7 +245,7 @@ def roomer(r):
             def next_word(word):
                 nonlocal en_dict
                 choices = [
-                    en_dict[x[0] + 1][1]
+                    en_dict[(x[0] + 1) % len(en_dict)][1]
                     for x in filter(lambda x: x[1] == word, en_dict)
                 ]
                 return secrets.choice(choices)
