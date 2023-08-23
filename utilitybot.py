@@ -233,13 +233,9 @@ def roomer(r):
                 )
 
         elif event.content[:3] == "ai ":
-            with open("markov_speech.txt") as f:
-                dictionary = f.read().split("\n")
+            with open("ai_corpus.txt") as f:
+                dictionary = re.sub("<.*?>| ?@ ?","",f.read()).split()
             i = event.content[3:]
-            dictionary.extend(i.split())
-            for x in i.split():
-                dictionary.insert(0, x)
-                dictionary.insert(len(dictionary) // 2, x)
             en_dict = [*enumerate(dictionary)]
 
             def next_word(word):
