@@ -8,6 +8,7 @@ import re
 import decimal
 import datetime
 import multiprocessing
+import subprocess
 from urllib.request import urlopen
 
 main_ = __name__ == "__main__"
