@@ -77,21 +77,22 @@ def roomer(r):
                         r.buildReply(
                             event.message_id,
                             "The answer is "
-                            + 
-                                subprocess.check_output(
-                                    [
-                                        "timeout",
-                                        "-s",
-                                        "SIGKILL",
-                                        "10s",
-                                        "python3",
-                                        "calculate.py",
-                                        string,
-                                    ]
-                                ).decoce('utf-8').replace('\n', '')
+                            + subprocess.check_output(
+                                [
+                                    "timeout",
+                                    "-s",
+                                    "SIGKILL",
+                                    "10s",
+                                    "python3",
+                                    "calculate.py",
+                                    string,
+                                ]
                             )
-                            + ".",
+                            .decoce("utf-8")
+                            .replace("\n", ""),
                         )
+                        + ".",
+                    )
                 except subprocess.CalledProcessError:
                     r.send(
                         r.buildReply(
