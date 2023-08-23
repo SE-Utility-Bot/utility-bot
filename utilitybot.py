@@ -8,6 +8,7 @@ import re
 import decimal
 import datetime
 import multiprocessing
+import subprocess
 from urllib.request import urlopen
 
 main_ = __name__ == "__main__"
@@ -71,19 +72,34 @@ def roomer(r):
             val = set(string)
             result = []
             if val.issubset(allowed):
-
-                def calculate():
-                    nonlocal string
-                    nonlocal result
-                    result.append(eval(string))
-
-                calculate()
-
-                r.send(
-                    r.buildReply(
-                        event.message_id, "The answer is " + str(result[0]) + "."
+                try:
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            "The answer is "
+                            + subprocess.check_output(
+                                [
+                                    "timeout",
+                                    "-s",
+                                    "SIGKILL",
+                                    "10s",
+                                    "python3",
+                                    "calculate.py",
+                                    string,
+                                ]
+                            )
+                            .decode("utf-8")
+                            .replace("\n", ""),
+                        )
+                        + ".",
                     )
-                )
+                except subprocess.CalledProcessError:
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            "Sorry, the calculation took longer than 10 seconds.",
+                        )
+                    )
             else:
                 r.send(
                     r.buildReply(
@@ -122,7 +138,7 @@ def roomer(r):
             commands = {
                 "echo <message>": "                      Sends the message given to it.",
                 "echochr <character number>": "          Sends the unicode character with the codepoint of the number given to it. Must be in base 10.",
-                "calc <python expression>": "            Sends the answer to the given Python expression. Uses a restricted character set due to security reasons.",
+                "calc <python expression>": "            Sends the answer to the given Python expression. Uses a restricted character set due to security reasons. Times out after 10 seconds.",
                 "ping <user name>": "                    Pings the person with the username that was passed to it.",
                 "remotesay <room>, <message>": "         Sends a message in the specified room ID. If no room ID is given, the room defaults to Sandbox 2.",
                 "getsource": "                           Sends a link to the source code.",
