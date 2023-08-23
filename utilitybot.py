@@ -74,11 +74,31 @@ def roomer(r):
                 try:
                     r.send(
                         r.buildReply(
-                            event.message_id, "The answer is " + str(subprocess.check_output(["timeout", "-s", "SIGKILL", "10s", "python3", "calculate.py", string])) + "."
+                            event.message_id,
+                            "The answer is "
+                            + str(
+                                subprocess.check_output(
+                                    [
+                                        "timeout",
+                                        "-s",
+                                        "SIGKILL",
+                                        "10s",
+                                        "python3",
+                                        "calculate.py",
+                                        string,
+                                    ]
+                                )
+                            )
+                            + ".",
                         )
                     )
                 except subprocess.CalledProcessError:
-                    r.send(r.buildReply(event.message_id, "Sorry, the calculation took longer than 10 seconds."))
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            "Sorry, the calculation took longer than 10 seconds.",
+                        )
+                    )
             else:
                 r.send(
                     r.buildReply(
