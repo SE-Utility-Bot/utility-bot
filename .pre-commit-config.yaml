@@ -11,6 +11,6 @@ repos:
 #    -   id: black
 -    repo: local
      hooks:
-     -    id: pass
-               language: python
-               entry: echo 1
+     -   id: pass
+           language: python
+           entry: echo 1
