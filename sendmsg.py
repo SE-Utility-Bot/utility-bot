@@ -1,6 +1,7 @@
-import sechat
-import sys
 import re
+import sys
+
+import sechat
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
