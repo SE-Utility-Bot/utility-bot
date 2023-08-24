@@ -12,5 +12,5 @@ repos:
 -    repo: local
      hooks:
      -   id: pass
-           language: python
-           entry: echo 1
+         language: python
+         entry: echo 1
