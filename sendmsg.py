@@ -1,7 +1,6 @@
 import sechat
 import sys
 import re
-from urllib.parse import quote
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
