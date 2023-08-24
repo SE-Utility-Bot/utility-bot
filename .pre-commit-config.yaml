@@ -12,5 +12,6 @@ repos:
 -    repo: local
      hooks:
      -   id: pass
+         name: Always Pass
          language: python
          entry: echo 1
