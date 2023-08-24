@@ -158,7 +158,7 @@ def roomer(r):
                             + (
                                 result := [
                                     x
-                                    for x in commands.keys()
+                                    for x in commands
                                     if re.match(event.content.partition(" ")[2], x)
                                 ][0]
                             )
@@ -175,7 +175,7 @@ def roomer(r):
                         + (
                             "\n".join(
                                 f"{chr(8226)} {x}: {commands[x]}"
-                                for x in commands.keys()
+                                for x in commands
                             )
                         ),
                     )
