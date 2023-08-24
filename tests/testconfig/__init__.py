@@ -1,8 +1,9 @@
-import sechat
+import re
 import secrets
 import sys
 import time
-import re
+
+import sechat
 
 EMAIL = sys.argv[1]
 PASSWORD = sys.argv[2]
