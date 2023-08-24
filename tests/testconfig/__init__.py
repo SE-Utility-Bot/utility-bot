@@ -49,7 +49,7 @@ class Tests(metaclass=meta):
         ROOM.send("calc {0} * {1}".format(rand1, rand2))
         time.sleep(5)
         message = ROOM.getRecentMessages()[-1]
-        number = re.search("\d+", message["content"]).group(0)
+        number = re.search(r"\d+", message["content"]).group(0)
         assert result == int(number)
 
     def test_finish():
