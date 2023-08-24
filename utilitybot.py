@@ -174,8 +174,7 @@ def roomer(r):
                         f"@{event.user_name}\nHere are the available commands for this bot and their structures:\n\n"
                         + (
                             "\n".join(
-                                f"{chr(8226)} {x}: {commands[x]}"
-                                for x in commands
+                                f"{chr(8226)} {x}: {commands[x]}" for x in commands
                             )
                         ),
                     )
