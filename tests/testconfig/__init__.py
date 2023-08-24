@@ -13,9 +13,7 @@ ROOM = BOT.joinRoom(147571)
 
 
 def meta(a, b, c):
-    """
-    Metaclass for the Tests class, so that testing is as easy as doing Tests().
-    """
+    """Metaclass for the Tests class, so that testing is as easy as doing Tests()."""
 
     def func():
         for x in list(c.values())[3:]:
