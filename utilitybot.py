@@ -18,6 +18,7 @@ if main_:
     t = bot.joinRoom(147676)
     priv = bot.joinRoom(147571)
     sb2 = bot.joinRoom(147516)
+    baso = bot.joinRoom(146039)
 
 
 def indent(string):
@@ -232,6 +233,7 @@ if main_:
     t.on(Events.MESSAGE, roomer(t))
     priv.on(Events.MESSAGE, roomer(priv))
     sb2.on(Events.MESSAGE, roomer(sb2))
+    baso.on(Events.MESSAGE, roomer(baso))
 
     try:
         counter = 0
@@ -239,6 +241,7 @@ if main_:
         t.send("Bot has started.")
         priv.send("Bot has started.")
         sb2.send("Bot has started. No freezing!")
+        baso.send("Bot has started. Hello everyone! cc @OakBot")
         while True:
             print("Bot is running. Seconds since start: {}".format(counter))
             time.sleep(1)
