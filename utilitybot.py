@@ -164,7 +164,7 @@ def roomer(r):
                 "random <quantity>, <start>, <end>":
                 "   Sends the specified number of random numbers in the inclusive range (using os.urandom). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>. Maximum argument value is 1000 for <quantity> and 10 ** 24 for all other arguments. The numbers lose a little bit of accuracy as the number of possible numbers go up.",
                 "translate <text> | <to> | <from>":
-                "      Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given)",
+                "      Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://placereporter99.github.io/utility-bot/supported-langs/ for supported languages and their language codes.",
             }
             if len(event.content) > 6:
                 try:
