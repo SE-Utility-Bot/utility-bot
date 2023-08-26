@@ -23,7 +23,7 @@ def meta(a, b, c):  # skipcq: PYL-E1139
     return func
 
 
-class Tests(metaclass=meta):
+class Tests(metaclass=meta): # skipcq: PYL-E1139
     """
     Testing functions go in this class.
     Every function must take no arguments, not even the self argument.
