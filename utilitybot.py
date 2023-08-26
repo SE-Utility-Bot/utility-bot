@@ -241,7 +241,7 @@ def roomer(r):
             arguments = [remove_space(x) for x in event.content[10:].split('|')]
             while len(arguments) < 3:
                 arguments.append("auto")
-            r.send(r.buildReply(event.message_id, GoogleTranslator(**dict(zip(["target", "source"], [a if (a := arguments[1]) != "auto" else "en", arguments[2]]))).translate()))
+            r.send(r.buildReply(event.message_id, GoogleTranslator(**dict(zip(["target", "source"], [a if (a := arguments[1]) != "auto" else "en", arguments[2]]))).translate(arguments[0])))
 
     return msg
 
