@@ -29,7 +29,7 @@ def indent(text):
 def remove_lead_space(text):
     it = iter(text)
     while (result := next(it)) == " ":
-        pass
+        """This chips off leading spaces from the iterator."""
     return result + "".join(it)
 
 
