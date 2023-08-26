@@ -38,7 +38,7 @@ class Tests(metaclass=meta):
 
     def test_echo():
         hext = secrets.token_hex(16)
-        ROOM.send("echo {}".format(hext))
+        ROOM.send(f"echo {hext}")
         time.sleep(5)
         message = ROOM.getRecentMessages()[-1]
         assert message["content"] == hext
@@ -46,7 +46,7 @@ class Tests(metaclass=meta):
     def test_calc():
         rand1, rand2 = secrets.randbits(256), secrets.randbits(256)
         result = rand1 * rand2
-        ROOM.send("calc {0} * {1}".format(rand1, rand2))
+        ROOM.send("calc {rand1} * {rand2}")
         time.sleep(5)
         message = ROOM.getRecentMessages()[-1]
         number = re.search(r"\d+", message["content"]).group(0)

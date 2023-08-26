@@ -276,7 +276,7 @@ if main_:
         sb2.send("Bot has started. No freezing!")
         baso.send("Bot has started. Hello everyone! cc @OakBot")
         while True:
-            print("Bot is running. Seconds since start: {}".format(counter))
+            print(f"Bot is running. Seconds since start: {counter}")
             time.sleep(1)
             counter += 1
     finally:
