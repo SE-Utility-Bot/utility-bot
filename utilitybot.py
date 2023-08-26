@@ -4,6 +4,7 @@ import re
 import subprocess
 import sys
 import time
+from deep_translator import GoogleTranslator
 from urllib.request import urlopen
 
 import sechat
@@ -21,8 +22,18 @@ if main_:
     baso = bot.joinRoom(146039)
 
 
-def indent(string):
-    return "\n".join("    " + x for x in string.split("\n"))
+def indent(text):
+    return "\n".join("    " + x for x in text.split("\n"))
+
+def remove_lead_space(text):
+    it = iter(text)
+    while (result := next(it)) == ' ':
+        pass
+    return result + ''.join(it)
+
+def remove_space(text):
+    lead_space_x = remove_lead_space(text)
+    return remove_lead_space(lead_space_x[::-1])[::-1]
 
 
 def remote(event):
@@ -150,6 +161,8 @@ def roomer(r):
                 "                     Sends the HTML content of the specified URL.",
                 "random <quantity>, <start>, <end>":
                 "   Sends the specified number of random numbers in the inclusive range (using os.urandom). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>. Maximum argument value is 1000 for <quantity> and 10 ** 24 for all other arguments. The numbers lose a little bit of accuracy as the number of possible numbers go up.",
+                "translate <text> | <to> | <from>":
+                "      Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given)"
             }
             if len(event.content) > 6:
                 try:
@@ -224,6 +237,11 @@ def roomer(r):
                         str([(((args[2] - args[1] + 1) * x) // 255) + args[1]
                              for x in os.urandom(args[0])]),
                     ))
+        elif event.content[:10] == "translate ":
+            arguments = [remove_space(x) for x in event.content[10:].split('|')]
+            while len(arguments) < 3:
+                arguments.append("auto")
+            r.send(r.buildReply(event.message_id, GoogleTranslator(**dict(zip(["target", "source"], [a if (a := arguments[1]) != "auto" else "en", arguments[2]]))).translate()))
 
     return msg
 
