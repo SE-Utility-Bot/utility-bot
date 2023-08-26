@@ -13,7 +13,7 @@ BOT.login(EMAIL, PASSWORD)
 ROOM = BOT.joinRoom(147571)
 
 
-def meta(a, b, c): # skipcq: PYL-E1139
+def meta(a, b, c):  # skipcq: PYL-E1139
     """Metaclass for the Tests class, so that testing is as easy as doing Tests()."""
 
     def func():

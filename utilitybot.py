@@ -28,7 +28,7 @@ def indent(text):
 
 def remove_lead_space(text):
     it = iter(text)
-    while (result := next(it)) == " ": # skipcq: PTC-W0063
+    while (result := next(it)) == " ":  # skipcq: PTC-W0063
         _ = """This chips off leading spaces from the iterator."""
     return result + "".join(it)
 
@@ -126,7 +126,7 @@ def roomer(r):
                     r.buildReply(event.message_id,
                                  "Sorry, I'm afraid I can't do that."))
             else:
-                global g # skipcq: PYL-W0601
+                global g  # skipcq: PYL-W0601
                 g = bot.joinRoom(int(li[0]))
                 g.send(event.user_name + ": " + li[2])
                 g.on(Events.MESSAGE, remote)
