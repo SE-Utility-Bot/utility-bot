@@ -226,7 +226,7 @@ def roomer(r):
                 r.send(r.buildReply(event.message_id, f"Here are your random numbers:\n{numbers}"))
         elif event.content[:10] == "translate ":
             arguments = [
-                remove_space(x) for x in event.content[10:].split("|")
+                remove_space(x) for x in html.unescape(event.content[10:]).split("|")
             ]
             while len(arguments) < 3:
                 arguments.append("auto")
