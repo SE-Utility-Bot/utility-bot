@@ -158,8 +158,8 @@ def roomer(r):
                 "                         Sends a picture of an empty string.",
                 "help":
                 "                                Shows some information.",
-                "op":
-                '                                  Replies with a random message from statuses.txt. Exists to quickly check whether the bot is running.',
+                "op / status":
+                '                         Replies with a random message from statuses.txt. Exists to quickly check whether the bot is running.',
                 "webscrape <URL>":
                 "                     Sends the HTML content of the specified URL.",
                 "random <quantity>, <start>, <end>":
@@ -197,9 +197,10 @@ def roomer(r):
                     event.message_id,
                     'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/PlaceReporter99/utility-bot',
                 ))
-        elif event.content == "op":
+        elif event.content == "op" or event.content == "status":
             with open("status.txt") as f:
-                r.send(r.buildReply(event.message_id, secrets.choice(f.read().split('\n'))))
+                with open(__file__) as g:
+                    r.send(r.buildReply(event.message_id, a if (a := secrets.choice(f.read().split('\n'))) != "[prog_rand]" else secrets.choice(g.read().split('\n'))))
         elif event.content[:10] == "webscrape ":
             r.send(
                 r.buildReply(
