@@ -1,10 +1,10 @@
 import html
 import os
 import re
+import secrets
 import subprocess
 import sys
 import time
-import secrets
 from urllib.request import urlopen
 
 import sechat
@@ -159,7 +159,7 @@ def roomer(r):
                 "help":
                 "                                Shows some information.",
                 "op / status":
-                '                         Replies with a random message from statuses.txt. Exists to quickly check whether the bot is running.',
+                "                         Replies with a random message from statuses.txt. Exists to quickly check whether the bot is running.",
                 "webscrape <URL>":
                 "                     Sends the HTML content of the specified URL.",
                 "random <quantity>, <start>, <end>":
@@ -200,7 +200,13 @@ def roomer(r):
         elif event.content == "op" or event.content == "status":
             with open("status.txt") as f:
                 with open(__file__) as g:
-                    r.send(r.buildReply(event.message_id, a if (a := secrets.choice(f.read().split('\n'))) != "[prog_rand]" else secrets.choice(g.read().split('\n'))))
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            a if (a := secrets.choice(f.read().split("\n")))
+                            != "[prog_rand]" else secrets.choice(
+                                g.read().split("\n")),
+                        ))
         elif event.content[:10] == "webscrape ":
             r.send(
                 r.buildReply(
@@ -216,14 +222,19 @@ def roomer(r):
                 args.append(255)
             elif len(args) == 2:
                 args.insert(1, 0)
-            if args[0] > 1000 or any(x > 9 * 10 ** 18 for x in args):
+            if args[0] > 1000 or any(x > 9 * 10**18 for x in args):
                 r.send(
                     r.buildReply(
                         event.message_id,
                         "Sorry, that will probably take me too long."))
             else:
-                numbers = [secrets.choice(range(args[1], args[2] + 1)) for x in range(args[0])]
-                r.send(r.buildReply(event.message_id, f"Here are your random numbers:\n{numbers}"))
+                numbers = [
+                    secrets.choice(range(args[1], args[2] + 1))
+                    for x in range(args[0])
+                ]
+                r.send(
+                    r.buildReply(event.message_id,
+                                 f"Here are your random numbers:\n{numbers}"))
         elif event.content[:10] == "translate ":
             arguments = [
                 remove_space(x) for x in event.content[10:].split("|")
