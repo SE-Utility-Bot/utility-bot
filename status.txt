@@ -9,7 +9,7 @@ I am solving the 1/n tank problem using unwieldly integrals. Would you like me t
 I am struggling ta tyne witg tge keybaord randmly mauued.
 I, I, I, I, I, cancel that, it's V.
 I am programming myself. I don't know what bugs I'll introduce into mysel_f. Oh no, is that underscore a_ bug?
-I am using a main guard in my __main__.py file. I hope it works.
+I am using a main guard in my \_\_main\_\_.py file. I hope it works.
 I am adding to my statuses
 Huh. What?
 zzzzzzzzzzZZZZZZZZZZZZZZZZZzzzzzzzzzzzzzzzzzzzzzzzzzzzzzZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzZZZZZZZZZZZz
