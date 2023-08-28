@@ -30,7 +30,7 @@ def indent(text):
 def remove_lead_space(text):
     it = iter(text)
     while (result := next(it)) == " ":  # skipcq: PTC-W0063
-        _ = """This chips off leading spaces from the iterator."""
+        pass
     return result + "".join(it)
 
 
@@ -54,7 +54,7 @@ def roomer(r):
                 re.UNICODE,
         )) and event.user_id == 375672:
             if result.group(1) == "Utility Bot":
-              [r.send("/fish") for _ in range(2)]
+              [r.send("/fish") for _ in range(2)] # skipcq: PYL-W0106
             else:
               r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
         elif event.content[:5] == "echo ":
