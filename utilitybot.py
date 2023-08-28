@@ -212,15 +212,14 @@ def roomer(r):
                     'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/PlaceReporter99/utility-bot',
                 ))
         elif event.content in ("op", "status"):
-            with open("status.txt") as f:
-                with open(__file__) as g:
-                    r.send(
-                        r.buildReply(
-                            event.message_id,
-                            a if (a := secrets.choice(f.read().split("\n")))
-                            != "[prog_rand]" else secrets.choice(
-                                g.read().split("\n")),
-                        ))
+            with open("status.txt") as f, open(__file__) as g:
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        a if (a := secrets.choice(f.read().split("\n")))
+                        != "[prog_rand]" else secrets.choice(
+                            g.read().split("\n")),
+                    ))
         elif event.content[:10] == "webscrape ":
             r.send(
                 r.buildReply(
