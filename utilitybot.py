@@ -53,9 +53,15 @@ def roomer(r):
                 html.unescape(event.content),
                 re.UNICODE,
         )) and event.user_id == 375672:
-            r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
+            if result.group(0) == "Utility Bot":
+              [r.send("/fish") for _ in range(2)]
+            else:
+              r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
         elif event.content[:5] == "echo ":
-            r.send(html.unescape(event.content[5:]))
+            if user_id == 540406 or event.content[5:] != "/fish":
+              r.send(html.unescape(event.content[5:]))
+            else:
+              r.send(r.buildReply(event.message_id, "Sorry, I cannot do that."))
         elif event.content[:8] == "echochr ":
             r.send(html.unescape(chr(int(event.content[8:]))))
         elif event.content[:5] == "calc ":
