@@ -29,6 +29,7 @@ def indent(text):
 
 def remove_lead_space(text):
     it = iter(text)
+    # skipcq: PTC-W0047
     while (result := next(it)) == " ":  # skipcq: PTC-W0063
         pass
     return result + "".join(it)
