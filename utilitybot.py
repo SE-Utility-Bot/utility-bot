@@ -58,7 +58,7 @@ def roomer(r):
             else:
               r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
         elif event.content[:5] == "echo ":
-            if user_id == 540406 or event.content[5:] != "/fish":
+            if event.user_id == 540406 or event.content[5:] != "/fish":
               r.send(html.unescape(event.content[5:]))
             else:
               r.send(r.buildReply(event.message_id, "Sorry, I cannot do that."))
