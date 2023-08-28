@@ -54,7 +54,9 @@ def roomer(r):
                 re.UNICODE,
         )) and event.user_id == 375672:
             if result.group(1) == "Utility Bot":
-                [r.send("/fish") for _ in range(2)]  # skipcq: PYL-W0106
+                r.send("/fish")
+                r.send("Stack Exchange does not let me send 2 messages with the same content in quick sucsession, which is why I have to send this message. :(")
+                r.send("/fish")
             else:
                 r.send(
                     f"@{result.group(1).replace(' ', '')} your fish is ready!")
