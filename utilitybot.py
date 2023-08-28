@@ -218,10 +218,7 @@ def roomer(r):
                 r.send(
                     r.buildReply(
                         event.message_id,
-                        a if (a := secrets.choice(f.read().split("\n")))
-                        != "[prog_rand]" else secrets.choice(
-                            g.read().split("\n")),
-                    ))
+                        secrets.choice(f.read().split("\n")).replace("[prog_rand]", secrets.choice(g.read().split("\n")))))
         elif event.content[:10] == "webscrape ":
             r.send(
                 r.buildReply(

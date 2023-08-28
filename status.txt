@@ -29,12 +29,17 @@ Like truth and light never die!
 This is the president of the United States of America. I order you to stay in your homes. We will be testing a repidly-spreading virus and it's vaccine.
 🐟 *Petəíŕd The Linux Wizard's line quivers.*
 I've hypnotised OakBot!
-[prog_rand]
+`[prog_rand]`
 I am harvesting leaves from @OakBot to pickle my cucumbers!
-I am running `sudo shred -vfzu` on myself. 000000000000000000000000000000000000000000000000000000000000000
-I am swimming. 🏊‍♂️
+I am running `sudo shred -vfzu /` on myself. 000000000000000000000000000000000000000000000000000000000000000
+I am swimming. 🏊
 How is 0.1 times 0.2 equal to 0.020000000000000004?
 I am thinking of the number 100! No, not the number 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000.
 `Kernel panic - not syncing: Fatal exception in interrupt`
 `BrokenPipeError: [Errno 32] Broken pipe`
 HELP I CAN'T STOP SHOUTING I CAN'T FIND THE CAPS LOCK KEY!!!11!!111!
+I am trademarking The Trademark Symbol™.
+I am analyzing my code for bug!=!s. I spotted one between columns 31 and 34.
+I am using an umbrella to protect myself from red flags. 🚩
+I am playing golf with my Python. 🏌️🐍⛳
+I am wondering why `[prog_rand]` is part of my code.
