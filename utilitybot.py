@@ -48,7 +48,11 @@ def remote(event):
 def roomer(r):
 
     def msg(event):
-        if (result := re.match(r"🐟 <i>(.*)'s line quivers\.<\/i>", html.unescape(event.content), re.UNICODE)) and event.user_id == 375672:
+        if (result := re.match(
+                r"🐟 <i>(.*)'s line quivers\.<\/i>",
+                html.unescape(event.content),
+                re.UNICODE,
+        )) and event.user_id == 375672:
             r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
         elif event.content[:5] == "echo ":
             r.send(html.unescape(event.content[5:]))
