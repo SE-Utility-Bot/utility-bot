@@ -53,7 +53,7 @@ def roomer(r):
                 html.unescape(event.content),
                 re.UNICODE,
         )) and event.user_id == 375672:
-            if result.group(0) == "Utility Bot":
+            if result.group(1) == "Utility Bot":
               [r.send("/fish") for _ in range(2)]
             else:
               r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
