@@ -211,7 +211,7 @@ def roomer(r):
                     event.message_id,
                     'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/PlaceReporter99/utility-bot',
                 ))
-        elif event.content == "op" or event.content == "status":
+        elif event.content in ("op", "status"):
             with open("status.txt") as f:
                 with open(__file__) as g:
                     r.send(
