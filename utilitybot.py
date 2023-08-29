@@ -20,7 +20,7 @@ if main_:
     priv = bot.joinRoom(147571)
     sb2 = bot.joinRoom(147516)
     baso = bot.joinRoom(146039)
-    den = bot.joinRom(148152)
+    den = bot.joinRoom(148152)
 
 
 def indent(text):
