@@ -228,14 +228,15 @@ def roomer(r):
             try:
                 r.send(
                     indent(
-                    r.buildReply(
-                        event.message_id,
-                            "\nHere is the source code of the HTML webpage:\n\n" +
-                            urlopen(event.content[10:]).read().decode("utf-8")),
-                    ))
+                        r.buildReply(
+                            event.message_id,
+                            "\nHere is the source code of the HTML webpage:\n\n"
+                            +
+                            urlopen(event.content[10:]).read().decode("utf-8"),
+                        ), ))
             except Exception as err:
                 r.send(r.buildReply(event.message_id, repr(err)))
-            
+
         elif event.content[:7] == "random ":
             args = [int(x) for x in event.content[7:].split(",")]
             if len(args) == 1:
