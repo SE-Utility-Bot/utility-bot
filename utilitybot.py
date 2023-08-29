@@ -232,8 +232,8 @@ def roomer(r):
                             +
                             "\nHere is the source code of the HTML webpage:\n\n"
                             +
-                            urlopen(event.content[10:]).read().decode("utf-8"),
-                        ), ))
+                            urlopen(event.content[10:]).read().decode("utf-8")
+                        ))
             except Exception as err:  # skipcq: PYL-W0703
                 r.send(r.buildReply(event.message_id, f"`{repr(err)}`"))
 
