@@ -229,6 +229,7 @@ def roomer(r):
                 r.send(
                     indent(
                             f"@{event.user_name.replace(' ', '')}"
+                            +
                             "\nHere is the source code of the HTML webpage:\n\n"
                             +
                             urlopen(event.content[10:]).read().decode("utf-8"),
