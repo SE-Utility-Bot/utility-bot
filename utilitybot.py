@@ -186,7 +186,7 @@ def roomer(r):
                 "translate <text> | <to> | <from>":
                 "      Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://placereporter99.github.io/utility-bot/supported-langs/ for supported languages and their language codes.",
                 "fishinv":
-                "                             Get's the bot's fishing inventory, with the fishing game being run by OakBot."
+                "                             Get's the bot's fishing inventory, with the fishing game being run by OakBot.",
             }
             if len(event.content) > 6:
                 try:
