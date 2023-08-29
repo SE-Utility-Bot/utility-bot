@@ -184,7 +184,7 @@ def roomer(r):
                 "random <quantity>, <start>, <end>":
                 "   Sends the specified number of random numbers in the inclusive range (using secrets.choice). 1 argument uses the range 0 to 255, and 2 arguments uses the range 0 to <end>. Maximum argument value is 1000 for <quantity> and 9 * 10 ** 18 for all other arguments.",
                 "translate <text> | <to> | <from>":
-                "      Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://placereporter99.github.io/utility-bot/supported-langs/ for supported languages and their language codes.",
+                "    Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://placereporter99.github.io/utility-bot/supported-langs/ for supported languages and their language codes.",
                 "fishinv":
                 "                             Get's the bot's fishing inventory, with the fishing game being run by OakBot.",
             }
