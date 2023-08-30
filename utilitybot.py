@@ -12,7 +12,7 @@ from sechat.events import Events
 from transformers import Conversation, pipeline
 
 c = Conversation()
-h = pipeline("conversational")
+h = pipeline("conversational", pad_token_id=0)
 last_msg = ""
 
 main_ = __name__ == "__main__"
@@ -27,23 +27,24 @@ if main_:
     baso = bot.joinRoom(146039)
     den = bot.joinRoom(148152)
 
-
-def ai(event):
-    global c, h, last_msg
-    c.add_user_input(event.content)
-    response = h(c).generated_responses[-1]
-    if response == last_msg:
-        c = Conversation()
+def ai_roomer(r):
+    def ai(event):
+        global c, h, last_msg
         c.add_user_input(event.content)
-        last_msg = h(c).generated_responses[-1]
-    else:
-        last_msg = response
-    r.send(r.buildReply(event.message_id, last_msg))
+        response = h(c).generated_responses[-1]
+        if response == last_msg:
+            c = Conversation()
+            c.add_user_input(event.content)
+            last_msg = h(c).generated_responses[-1]
+        else:
+            last_msg = response
+        r.send(r.buildReply(event.message_id, last_msg))
+    return ai
 
 
 def onn(room):
     room.on(Events.MESSAGE, roomer(room))
-    room.on(Events.MENTION, ai)
+    room.on(Events.MENTION, ai_roomer(room))
 
 
 def indent(text):
@@ -301,11 +302,6 @@ def roomer(r):
                 ))
         elif event.content == "fishinv":
             r.send("/fish inv")
-        elif event.content[:3] == "ai ":
-            global c, h
-            c.add_user_input(event.content[3:])
-            r.send(r.buildReply(event.message_id,
-                                h(c).generated_responses[-1]))
 
     return msg
 
