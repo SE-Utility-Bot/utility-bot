@@ -13,6 +13,7 @@ from transformers import Conversation, pipeline
 
 c = Conversation()
 h = pipeline("conversational")
+last_msg = ''
 
 main_ = __name__ == "__main__"
 
@@ -26,6 +27,21 @@ if main_:
     baso = bot.joinRoom(146039)
     den = bot.joinRoom(148152)
 
+def ai(event):
+    global c, h, last_msg
+    c.add_user_input(event.content)
+    response = h(c).generated_responses[-1]
+    if response == last_msg:
+        c = Conversation()
+        c.add_user_input(event.content)
+        last_msg = h(c).generated_responses[-1]
+    else:
+        last_msg = response
+    r.send(r.buildReply(event.message_id, last_msg))
+
+def onn(room):
+    room.on(Events.MESSAGE, roomer(room))
+    room.on(Events.MENTION, ai)
 
 def indent(text):
     return "\n".join("    " + x for x in text.split("\n"))
@@ -292,12 +308,8 @@ def roomer(r):
 
 
 if main_:
-    r.on(Events.MESSAGE, roomer(r))
-    t.on(Events.MESSAGE, roomer(t))
-    priv.on(Events.MESSAGE, roomer(priv))
-    sb2.on(Events.MESSAGE, roomer(sb2))
-    baso.on(Events.MESSAGE, roomer(baso))
-    den.on(Events.MESSAGE, roomer(den))
+    for room in [r, t, priv, sb2, baso, den]:
+        onn(room)
 
     try:
         counter = 0
