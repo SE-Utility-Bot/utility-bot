@@ -48,6 +48,7 @@ def ai_roomer(r):
 def onn(room):
     room.on(Events.MESSAGE, roomer(room))
     room.on(Events.MENTION, ai_roomer(room))
+    room.on(Events.REPLY, ai_roomer(room))
 
 
 def indent(text):
