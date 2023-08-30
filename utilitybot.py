@@ -40,7 +40,8 @@ def ai_roomer(r):
             last_msg = h(c).generated_responses[-1]
         else:
             last_msg = response
-        r.send(r.buildReply(event.message_id, last_msg))
+        room_to_send = bot.joinRoom(event.room)
+        room_to_send.send(room_to_send.buildReply(event.message_id, last_msg))
 
     return ai
 
