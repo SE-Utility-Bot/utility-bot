@@ -32,11 +32,11 @@ def ai_roomer(r):
 
     def ai(event):
         global c, h, last_msg
-        c.add_user_input(event.content)
+        c.add_user_input(html.unescape(event.content))
         response = h(c).generated_responses[-1]
         if response == last_msg:
             c = Conversation()
-            c.add_user_input(event.content)
+            c.add_user_input(html.unescape(event.content))
             last_msg = h(c).generated_responses[-1]
         else:
             last_msg = response
