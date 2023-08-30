@@ -9,6 +9,11 @@ from urllib.request import urlopen
 import sechat
 from deep_translator import GoogleTranslator
 from sechat.events import Events
+from transformers import pipeline, Conversation
+
+c = Conversation()
+h = pipeline("conversational")
+
 
 main_ = __name__ == "__main__"
 
@@ -278,6 +283,10 @@ def roomer(r):
                 ))
         elif event.content == "fishinv":
             r.send("/fish inv")
+        elif event.content[:3] == "ai ":
+            global c, h
+            c.add_user_input(event.content[3:])
+            r.send(r.buildReply(event.message_id, h(c).generated_responses[-1]))
 
     return msg
 
