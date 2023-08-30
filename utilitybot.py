@@ -42,8 +42,6 @@ if main_:
 
 def onn(room):
     room.on(Events.MESSAGE, roomer(room))
-    room.on(Events.MENTION, ai_roomer(room))
-    room.on(Events.REPLY, ai_roomer(room))
 
 
 def indent(text):
@@ -210,6 +208,8 @@ def roomer(r):
                 "    Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://placereporter99.github.io/utility-bot/supported-langs/ for supported languages and their language codes.",
                 "fishinv":
                 "                             Get's the bot's fishing inventory, with the fishing game being run by OakBot.",
+                "ai <prompt>":
+                "                         Talk to an AI. It's just one big conversation shared across every room the bot operates in.",
             }
             if len(event.content) > 6:
                 try:
