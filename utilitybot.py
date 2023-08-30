@@ -27,23 +27,17 @@ if main_:
     baso = bot.joinRoom(146039)
     den = bot.joinRoom(148152)
 
-
-def ai_roomer(r):
-
-    def ai(event):
+    def ai(text):
         global c, h, last_msg
-        c.add_user_input(html.unescape(event.content))
+        c.add_user_input(html.unescape(text))
         response = h(c).generated_responses[-1]
         if response == last_msg:
             c = Conversation()
-            c.add_user_input(html.unescape(event.content))
+            c.add_user_input(html.unescape(text))
             last_msg = h(c).generated_responses[-1]
         else:
             last_msg = response
-        room_to_send = bot.joinRoom(event.room)
-        room_to_send.send(room_to_send.buildReply(event.message_id, last_msg))
-
-    return ai
+        return last_msg
 
 
 def onn(room):
@@ -307,6 +301,8 @@ def roomer(r):
                 ))
         elif event.content == "fishinv":
             r.send("/fish inv")
+        elif event.content[:3] == "ai ":
+            r.send(r.buildReply(event.message_id, ai(event.content[3:])))
 
     return msg
 
