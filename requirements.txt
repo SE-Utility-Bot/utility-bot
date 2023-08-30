@@ -1,2 +1,4 @@
 sechat
 deep_translator
+tensorflow
+transformers
