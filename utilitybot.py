@@ -13,7 +13,7 @@ from transformers import Conversation, pipeline
 
 c = Conversation()
 h = pipeline("conversational")
-last_msg = ''
+last_msg = ""
 
 main_ = __name__ == "__main__"
 
@@ -27,6 +27,7 @@ if main_:
     baso = bot.joinRoom(146039)
     den = bot.joinRoom(148152)
 
+
 def ai(event):
     global c, h, last_msg
     c.add_user_input(event.content)
@@ -39,9 +40,11 @@ def ai(event):
         last_msg = response
     r.send(r.buildReply(event.message_id, last_msg))
 
+
 def onn(room):
     room.on(Events.MESSAGE, roomer(room))
     room.on(Events.MENTION, ai)
+
 
 def indent(text):
     return "\n".join("    " + x for x in text.split("\n"))
