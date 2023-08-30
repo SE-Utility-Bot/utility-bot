@@ -27,7 +27,9 @@ if main_:
     baso = bot.joinRoom(146039)
     den = bot.joinRoom(148152)
 
+
 def ai_roomer(r):
+
     def ai(event):
         global c, h, last_msg
         c.add_user_input(event.content)
@@ -39,6 +41,7 @@ def ai_roomer(r):
         else:
             last_msg = response
         r.send(r.buildReply(event.message_id, last_msg))
+
     return ai
 
 
