@@ -2,7 +2,6 @@ import sys
 import time
 
 import sechat
-from sechat.events import Events
 
 from utilitybot import onn
 
