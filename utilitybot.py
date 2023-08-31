@@ -28,7 +28,6 @@ if main_:
     den = bot.joinRoom(148152)
 
     def ai(text):
-        global c, h, last_msg
         c.add_user_input(html.unescape(text))
         response = h(c).generated_responses[-1]
         if response == last_msg:
