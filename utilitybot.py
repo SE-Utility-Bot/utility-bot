@@ -7,10 +7,10 @@ import time
 from urllib.request import urlopen
 
 import sechat
+import streamlit as st
 from deep_translator import GoogleTranslator
 from sechat.events import Events
 from transformers import Conversation, pipeline
-import streamlit as st
 
 c = Conversation()
 h = pipeline("conversational", pad_token_id=0)
