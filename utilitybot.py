@@ -10,6 +10,7 @@ import sechat
 from deep_translator import GoogleTranslator
 from sechat.events import Events
 from transformers import Conversation, pipeline
+import streamlit as st
 
 c = Conversation()
 h = pipeline("conversational", pad_token_id=0)
@@ -19,7 +20,7 @@ main_ = __name__ == "__main__"
 
 if main_:
     bot = sechat.Bot()
-    bot.login(sys.argv[1], sys.argv[2])
+    bot.login(st.secrets["BOT_EMAIL"], st.secrets["BOT_PASSWORD"])
     r = bot.joinRoom(1)
     t = bot.joinRoom(147676)
     priv = bot.joinRoom(147571)
@@ -321,6 +322,7 @@ if main_:
         den.send("Bot has started. Hello everyone!")
         while True:
             print(f"Bot is running. Seconds since start: {counter}")
+            st.write(f"Bot is running. Seconds since start: {counter}")
             time.sleep(1)
             counter += 1
     finally:
