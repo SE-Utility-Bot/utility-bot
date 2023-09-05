@@ -1,1 +1,7 @@
-<h1>Welcome to the Utility Bot website!</h1>
+<script type="module" src="https://md-block.verou.me/md-block.js"></script>
+<script src="prism.js"></script>
+<md-block id="markdown">
+</md-block>
+<script>
+document.getElementById("markdown").innerHTML = String.fromCharCode(...(await fetch("https://raw.githubusercontent.com/PlaceReporter99/utility-bot/main/README.md").then((a) => a.body.getReader().read())).value)
+</script>
