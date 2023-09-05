@@ -316,7 +316,7 @@ def roomer(r):
         elif event.content == "togglefishping":
             with open("optout.txt", "r+") as f:
                 li = f.read().split("\n")
-                if event.user_name in l:
+                if event.user_name in li:
                     li.remove(event.user_name)
                     message = "Opted into fishing pings."
                 else:
