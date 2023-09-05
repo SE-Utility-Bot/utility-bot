@@ -1,9 +1,11 @@
 <script type="module" src="https://md-block.verou.me/md-block.js"></script>
 <script src="prism.js"></script>
 <script>
-let arr = await fetch("https://raw.githubusercontent.com/PlaceReporter99/utility-bot/main/README.md").then((a) => a.body.getReader().read())
-let text = String.fromCharCode(...arr.value)
-document.getElementById("markdown").innerHTML = text
+async function getText() {
+  let arr = await fetch("https://raw.githubusercontent.com/PlaceReporter99/utility-bot/main/README.md").then((a) => a.body.getReader().read());
+  return String.fromCharCode(...arr.value);
+}
+document.getElementById("markdown").innerHTML = getText()
 </script>
 <md-block id="markdown">
 </md-block>
