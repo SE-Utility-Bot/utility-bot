@@ -323,7 +323,7 @@ def roomer(r):
                     li.append(event.user_name)
                     message = "Opted out of fishing pings."
                 f.seek(0)
-                f.write("\n".join(l))
+                f.write("\n".join(li))
                 os.system(commit_commands)
                 r.send(r.buildReply(event.message_id, message))
 
