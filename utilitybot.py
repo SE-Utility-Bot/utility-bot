@@ -25,7 +25,8 @@ git config --global pull.rebase true
 git add .
 git commit -m "Database opting change"
 git pull "https://github.com/PlaceReporter99/utility-bot.git" main
-git push
+git rebase --skip
+git push HEAD:main
 """
 
 main_ = __name__ == "__main__"
