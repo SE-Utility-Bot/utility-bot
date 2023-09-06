@@ -21,6 +21,7 @@ last_msg = ""
 commit_commands = """
 git config --global user.email ""
 git config --global user.name "GitHub Actions"
+git config --global pull.rebase true
 git add .
 git commit -m "Database opting change"
 git pull "https://github.com/PlaceReporter99/utility-bot.git" main
