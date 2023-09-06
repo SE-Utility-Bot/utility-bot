@@ -19,9 +19,11 @@ h = pipeline("conversational", pad_token_id=0)
 last_msg = ""
 
 commit_commands = """
+git config --global user.email ""
+git config --global user.name "GitHub Actions"
 git add .
 git commit -m "Database opting change"
-git pull
+git pull "https://github.com/PlaceReporter99/utility-bot.git" main
 git push
 """
 
