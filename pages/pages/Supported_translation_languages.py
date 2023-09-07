@@ -1,6 +1,6 @@
 import streamlit as st
-html = \
-"""
+
+html = """
 ```
 afrikaans                     : af
 albanian                      : sq
