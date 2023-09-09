@@ -318,7 +318,6 @@ if main_:
         t.send("Bot has started.")
         priv.send("Bot has started.")
         sb2.send("Bot has started. No freezing!")
-        baso.send("Bot has started. Hello everyone!")
         den.send("Bot has started. Hello everyone!")
         while True:
             print(f"Bot is running. Seconds since start: {counter}")
