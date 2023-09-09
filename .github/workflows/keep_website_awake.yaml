@@ -1,0 +1,20 @@
+name: Keep the websie awake
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 12 18 * * *
+
+jobs:
+  wake_up:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+    
+      - name: Send HTTP request
+        run: |
+          python3 -c "from urllib.request import build_opener, HTTPCookieProcessor; print(build_opener(HTTPCookieProcessor()).open('https://utility-bot.streamlit.app').read())"
