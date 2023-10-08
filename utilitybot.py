@@ -28,6 +28,7 @@ if main_:
     sb2 = bot.joinRoom(147516)
     baso = bot.joinRoom(146039)
     den = bot.joinRoom(148152)
+    t4d = bot.joinRoom(148981)
 
     def ai(text):
         global c, h, last_msg  # skipcq: PYL-W0602
@@ -312,7 +313,7 @@ def roomer(r):
 
 
 if main_:
-    for room in [r, t, priv, sb2, baso, den]:
+    for room in [r, t, priv, sb2, baso, den, t4d]:
         onn(room)
 
     try:
