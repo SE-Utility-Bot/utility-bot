@@ -9,13 +9,12 @@ from urllib.request import urlopen
 import sechat
 from deep_translator import GoogleTranslator
 from sechat.events import Events
-from transformers import Conversation, pipeline
 
 # import streamlit as st
 
-c = Conversation()
-h = pipeline("conversational", pad_token_id=0)
-last_msg = ""
+#c = Conversation()
+#h = pipeline("conversational", pad_token_id=0)
+#last_msg = ""
 
 main_ = __name__ == "__main__"
 
@@ -30,7 +29,7 @@ if main_:
     #den = bot.joinRoom(148152)
     #t4d = bot.joinRoom(148981)
 
-    def ai(text):
+    """def ai(text):
         global c, h, last_msg  # skipcq: PYL-W0602
         c.add_user_input(html.unescape(text))
         response = h(c).generated_responses[-1]
@@ -40,7 +39,7 @@ if main_:
             last_msg = h(c).generated_responses[-1]
         else:
             last_msg = response
-        return last_msg
+        return last_msg"""
 
 
 def onn(room):
@@ -213,8 +212,7 @@ def roomer(r):
                 "    Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://utility-bot.streamlit.app/Supported_translation_languages for supported languages and their language codes.",
                 "fishinv":
                 "                             Get's the bot's fishing inventory, with the fishing game being run by OakBot.",
-                "ai <prompt>":
-                "                         Talk to an AI. It's just one big conversation shared across every room the bot operates in.",
+                
             }
             if len(event.content) > 6:
                 try:
@@ -306,8 +304,8 @@ def roomer(r):
                 ))
         elif event.content == "fishinv":
             r.send("/fish inv")
-        elif event.content[:3] == "ai ":
-            r.send(r.buildReply(event.message_id, ai(event.content[3:])))
+        '''elif event.content[:3] == "ai ":
+            r.send(r.buildReply(event.message_id, ai(event.content[3:])))'''
 
     return msg
 
