@@ -1,6 +1,2 @@
 sechat
 deep_translator
-tensorflow
-transformers
-streamlit>=1.10.0
-tf_keras
