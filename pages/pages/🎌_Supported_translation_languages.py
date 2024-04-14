@@ -1,6 +1,6 @@
 import streamlit as st
-html = \
-"""
+
+html = """
 # Supported languages
 
 Language name | Language code
