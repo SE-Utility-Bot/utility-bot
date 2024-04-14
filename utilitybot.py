@@ -23,12 +23,12 @@ if main_:
     bot = sechat.Bot()
     bot.login(sys.argv[1], sys.argv[2])
     r = bot.joinRoom(1)
-    t = bot.joinRoom(147676)
-    priv = bot.joinRoom(147571)
-    sb2 = bot.joinRoom(147516)
+    #t = bot.joinRoom(147676)
+    #priv = bot.joinRoom(147571)
+    #sb2 = bot.joinRoom(147516)
     baso = bot.joinRoom(146039)
-    den = bot.joinRoom(148152)
-    t4d = bot.joinRoom(148981)
+    #den = bot.joinRoom(148152)
+    #t4d = bot.joinRoom(148981)
 
     def ai(text):
         global c, h, last_msg  # skipcq: PYL-W0602
@@ -313,16 +313,12 @@ def roomer(r):
 
 
 if main_:
-    for room in [r, t, priv, sb2, baso, den, t4d]:
+    for room in [r, baso]:
         onn(room)
 
     try:
         counter = 0
         print("Startup Successful.")
-        t.send("Bot has started.")
-        priv.send("Bot has started.")
-        sb2.send("Bot has started. No freezing!")
-        den.send("Bot has started. Hello everyone!")
         while True:
             print(f"Bot is running. Seconds since start: {counter}")
             # st.write(f"Bot is running. Seconds since start: {counter}")
