@@ -23,12 +23,13 @@ if main_:
     bot = sechat.Bot()
     bot.login(sys.argv[1], sys.argv[2])
     r = bot.joinRoom(1)
-    #t = bot.joinRoom(147676)
-    #priv = bot.joinRoom(147571)
-    #sb2 = bot.joinRoom(147516)
+    # t = bot.joinRoom(147676)
+    # priv = bot.joinRoom(147571)
+    # sb2 = bot.joinRoom(147516)
     baso = bot.joinRoom(146039)
-    #den = bot.joinRoom(148152)
-    #t4d = bot.joinRoom(148981)
+
+    # den = bot.joinRoom(148152)
+    # t4d = bot.joinRoom(148981)
 
     def ai(text):
         global c, h, last_msg  # skipcq: PYL-W0602
@@ -86,9 +87,10 @@ def roomer(r):
                 r.send("/fish")
             else:
                 with open("optout.txt") as f:
-                    if result.group(1) not in f.read().split('\n'):
+                    if result.group(1) not in f.read().split("\n"):
                         r.send(
-                            f"@{result.group(1).replace(' ', '')} your fish is ready!")
+                            f"@{result.group(1).replace(' ', '')} your fish is ready!"
+                        )
         elif event.content[:5] == "echo ":
             if event.user_id == 540406 or event.content[5:10] != "/fish":
                 r.send(html.unescape(event.content[5:]))
