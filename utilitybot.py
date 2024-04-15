@@ -5,6 +5,7 @@ import subprocess
 import sys
 import time
 from urllib.request import urlopen
+from flask import Flask
 
 import sechat
 from deep_translator import GoogleTranslator
@@ -15,6 +16,11 @@ from sechat.events import Events
 #c = Conversation()
 #h = pipeline("conversational", pad_token_id=0)
 #last_msg = ""
+
+app = Flask(__name__)
+@app.route("/")
+def page():
+    return "<h1 style='text-align: center;'><a href='https://chat.stackexchange.com/rooms/1/sandbox'>Try it here</a></h1>"
 
 main_ = __name__ == "__main__"
 
@@ -313,7 +319,7 @@ def roomer(r):
 if main_:
     for room in [r, baso]:
         onn(room)
-
+    app.run(host='0.0.0.0', port=5000)
     try:
         counter = 0
         print("Startup Successful.")
