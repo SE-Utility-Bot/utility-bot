@@ -135,7 +135,7 @@ def roomer(r):
             string = html.unescape(event.content[5:])
             val = set(string)
             result = []
-            if True:
+            if 'sys' not in string:
                 try:
                     r.send(
                         r.buildReply(
