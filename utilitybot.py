@@ -34,6 +34,7 @@ if main_:
     baso = bot.joinRoom(146039)
     #den = bot.joinRoom(148152)
     #t4d = bot.joinRoom(148981)
+    pic = bot.joinRoom(152450)
 
     """def ai(text):
         global c, h, last_msg  # skipcq: PYL-W0602
@@ -84,11 +85,7 @@ def roomer(r):
                 re.UNICODE,
         )) and event.user_id == 375672:
             if result.group(1) == "Utility Bot":
-                r.send("/fish")
-                r.send(
-                    "Stack Exchange does not let me send 2 messages with the same content in quick sucsession, which is why I have to send this message. :("
-                )
-                r.send("/fish")
+                r.send("/fish again")
             else:
                 with open("optout.txt") as f:
                     if result.group(1) not in f.read().split('\n'):
@@ -312,12 +309,20 @@ def roomer(r):
             r.send("/fish inv")
         '''elif event.content[:3] == "ai ":
             r.send(r.buildReply(event.message_id, ai(event.content[3:])))'''
-
+        elif event.content[:6] == "shell ":
+            if event.user_id == 540406:
+                try:
+                    output = subprocess.getoutput(event.content[6:])
+                    r.send(output[1])
+                except:
+                    r.send("An error occured while executing the command.")
+            else:
+                r.send("You don't have permission, sorry!")
     return msg
 
 
 if main_:
-    for room in [r, baso]:
+    for room in [r, baso, pic]:
         onn(room)
     app.run(host='0.0.0.0', port=5000)
     try:
