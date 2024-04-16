@@ -321,7 +321,7 @@ def roomer(r):
 
 
 if main_:
-    for room in [r, baso, pic]:
+    for room in [r, baso]:
         onn(room)
     app.run(host='0.0.0.0', port=5000)
     try:
