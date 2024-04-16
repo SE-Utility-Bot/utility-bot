@@ -312,7 +312,7 @@ def roomer(r):
             if event.user_id == 540406:
                 try:
                     output = subprocess.getoutput(event.content[6:])
-                    r.send(output[1])
+                    r.send(output)
                 except:
                     r.send("An error occured while executing the command.")
             else:
