@@ -312,11 +312,11 @@ def roomer(r):
             if event.user_id == 540406:
                 try:
                     output = subprocess.getoutput(event.content[6:])
-                    r.send(output)
+                    r.send(r.buildReply(event.message_id, '\n' + indent(output)))
                 except:
-                    r.send("An error occured while executing the command.")
+                    r.send(r.buildReply(event.message_id, "An error occured while executing the command."))
             else:
-                r.send("You don't have permission, sorry!")
+                r.send(r.buildReply(event.message_id, "You don't have permission, sorry!"))
     return msg
 
 
