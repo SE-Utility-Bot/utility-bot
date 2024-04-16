@@ -34,7 +34,7 @@ if main_:
     baso = bot.joinRoom(146039)
     #den = bot.joinRoom(148152)
     #t4d = bot.joinRoom(148981)
-    pic = bot.joinRoom(152450)
+    #pic = bot.joinRoom(152450)
 
     """def ai(text):
         global c, h, last_msg  # skipcq: PYL-W0602
