@@ -307,8 +307,7 @@ def roomer(r):
                 ))
         elif event.content == "fishinv":
             r.send("/fish inv")
-        '''elif event.content[:3] == "ai ":
-            r.send(r.buildReply(event.message_id, ai(event.content[3:])))'''
+        
         elif event.content[:6] == "shell ":
             if event.user_id == 540406:
                 try:
