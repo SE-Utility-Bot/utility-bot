@@ -103,7 +103,7 @@ def roomer(r):
         elif event.content[:8] == "echochr ":
             r.send(html.unescape(chr(int(event.content[8:]))))
         elif event.content[:5] == "calc ":
-            '''allowed = {
+            allowed = {
                 "+",
                 "-",
                 "*",
@@ -131,11 +131,11 @@ def roomer(r):
                 ")",
                 ".",
                 "%",
-            }''' # We don't care if they delete root, it's not our problem.
+            }
             string = html.unescape(event.content[5:])
             val = set(string)
             result = []
-            if True:
+            if val.issubset(allowed):
                 try:
                     r.send(
                         r.buildReply(
@@ -161,7 +161,7 @@ def roomer(r):
                     r.buildReply(
                         event.message_id,
                         "Sorry, only characters in the set " +
-                        str(sorted({'unused platano'})) +
+                        str(sorted(allowed)) +
                         " are allowed due to security reasons.",
                     ))
         elif event.content[:5] == "ping ":
@@ -195,7 +195,7 @@ def roomer(r):
                 "echochr <character number>":
                 "          Sends the unicode character with the codepoint of the number given to it. Must be in base 10.",
                 "calc <python expression>":
-                "            Sends the answer to the given Python expression. Times out after 10 seconds.",
+                "            Sends the answer to the given Python expression. Uses a restricted character set due to security reasons. Times out after 10 seconds.",
                 "ping <user name>":
                 "                    Pings the person with the username that was passed to it.",
                 "remotesay <room>, <message>":
