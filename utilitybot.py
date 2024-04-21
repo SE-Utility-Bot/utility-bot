@@ -79,11 +79,13 @@ def remote(event):
 def roomer(r):
 
     def msg(event):
+        rid = r.roomID
+        nofish = [146039]
         if (result := re.match(
                 r"🐟 <i>(.*)'s line quivers\.<\/i>",
                 html.unescape(event.content),
                 re.UNICODE,
-        )) and event.user_id == 375672:
+        )) and event.user_id == 375672 and rid not in nofish:
             if result.group(1) == "Utility Bot":
                 r.send("/fish again")
             else:
