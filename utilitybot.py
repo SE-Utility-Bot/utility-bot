@@ -3,6 +3,7 @@ import re
 import secrets
 import subprocess
 import sys
+import os
 import time
 from urllib.request import urlopen
 from flask import Flask
@@ -10,6 +11,14 @@ from flask import Flask
 import sechat
 from deep_translator import GoogleTranslator
 from sechat.events import Events
+
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
+cred = credentials.Certificate('database_auth.json')
+f_init = firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 # import streamlit as st
 
@@ -26,7 +35,7 @@ main_ = __name__ == "__main__"
 
 if main_:
     bot = sechat.Bot()
-    bot.login(sys.argv[1], sys.argv[2])
+    bot.login(os.environ("BOT_EMAIL"), os.environ("BOT_PASSWORD"))
     r = bot.joinRoom(1)
     #t = bot.joinRoom(147676)
     #priv = bot.joinRoom(147571)
@@ -75,6 +84,34 @@ def remote(event):
         r.send(event.user_name + ": " + html.unescape(event.content[10:]))
         g.send(g.buildReply(event.message_id, "Message sent."))
 
+def dataread(coll, user, key):
+    try:
+        return db.collection(coll).document(user).to_dict()[key]
+    except:
+        return None
+
+def datawrite(coll, user, key, value):
+    return db.collection(coll).document(user).set({key: value}, merge=True)
+
+def datatoggle(coll, user, key):
+    return datawrite(coll, user, key, not dataread(coll, user, key))
+
+def tobool(val, truthy=["true", "1", "on", "y", "yes", "t", "i"], falsy=["false", "0", "off", "n", "no", "f", "o"], strfunc = (lambda x: str(x).lower())):
+    ch = strfunc(val)
+    if ch in truthy:
+        return True
+    elif ch in falsy:
+        return False
+    else:
+        return None
+
+def errortodefault(func, default=None):
+    def f(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except:
+            return default
+    return f
 
 def roomer(r):
 
@@ -85,14 +122,16 @@ def roomer(r):
                 r"🐟 <i>(.*)'s line quivers\.<\/i>",
                 html.unescape(event.content),
                 re.UNICODE,
-        )) and event.user_id == 375672 and rid not in nofish:
-            if result.group(1) == "Utility Bot":
+        )) and event.user_id == 375672:
+            if result.group(1) == "Utility Bot" and rid not in nofish:
                 r.send("/fish again")
             else:
-                with open("optout.txt") as f:
-                    if result.group(1) not in f.read().split('\n'):
-                        r.send(
-                            f"@{result.group(1).replace(' ', '')} your fish is ready!")
+                settingr = dataread("settings", result.group(1), "fishping")
+                if settingr == None:
+                    datawrite("settings", result.group(1), "fishping", False)
+                elif settingr:
+                    r.send(
+                        f"@{result.group(1).replace(' ', '')} your fish is ready!")
         elif event.content[:5] == "echo ":
             if event.user_id == 540406 or event.content[5:10] != "/fish":
                 r.send(html.unescape(event.content[5:]))
@@ -217,6 +256,8 @@ def roomer(r):
                 "    Translates <text> from the language code in <from> (automatically detects language if none is given) to the language code in <to> (translates to English if none is given). See https://utility-bot.streamlit.app/Supported_translation_languages for supported languages and their language codes.",
                 "fishinv":
                 "                             Get's the bot's fishing inventory, with the fishing game being run by OakBot.",
+                "setting <setting>, <value>":
+                "        Changes the specified setting to the specified boolean value",
                 
             }
             if len(event.content) > 6:
@@ -319,6 +360,27 @@ def roomer(r):
                     r.send(r.buildReply(event.message_id, "An error occured while executing the command."))
             else:
                 r.send(r.buildReply(event.message_id, "You don't have permission, sorry!"))
+
+        elif event.content[:8] == "setting ":
+            setting, value = map(remove_space, event.content[8:].split(","))
+            bool_settings = ["fishping"]
+            int_settings = []
+            if setting in bool_settings:
+                value = tobool(value)
+                if value == None:
+                    r.send(r.buildReply(event.message_id, "The provided value isn't a recognised boolean."))
+                    return
+            elif setting in int_settings:
+                value = errortodefault(int)(value)
+                if value == None:
+                    r.send(r.buildReply(event.message_id, "The provided value isn't a recognised number."))
+                    return
+            try:
+                datawrite("settings", event.user_name, setting, value)
+            except:
+                r.send(r.buildReply(event.message_id, "Setting could not be saved."))
+            else:
+                r.send(r.buildReply(event.message_id, "Setting changed!"))
     return msg
 
 
