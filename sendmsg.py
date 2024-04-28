@@ -4,7 +4,7 @@ import os
 
 import sechat
 
-EMAIL = os.environ["username"]
+EMAIL = os.environ["email"]
 PASSWORD = os.environ["password"]
 EVENT_NAME = os.environ["event"]
 EVENT_USER = os.environ["actor"]
