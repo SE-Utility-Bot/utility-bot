@@ -33,30 +33,6 @@ def page():
 
 main_ = __name__ == "__main__"
 
-if main_:
-    bot = sechat.Bot()
-    bot.login(os.environ("BOT_EMAIL"), os.environ("BOT_PASSWORD"))
-    r = bot.joinRoom(1)
-    #t = bot.joinRoom(147676)
-    #priv = bot.joinRoom(147571)
-    #sb2 = bot.joinRoom(147516)
-    baso = bot.joinRoom(146039)
-    #den = bot.joinRoom(148152)
-    #t4d = bot.joinRoom(148981)
-    #pic = bot.joinRoom(152450)
-
-    """def ai(text):
-        global c, h, last_msg  # skipcq: PYL-W0602
-        c.add_user_input(html.unescape(text))
-        response = h(c).generated_responses[-1]
-        if response == last_msg:
-            c = Conversation()
-            c.add_user_input(html.unescape(text))
-            last_msg = h(c).generated_responses[-1]
-        else:
-            last_msg = response
-        return last_msg"""
-
 
 def onn(room):
     room.on(Events.MESSAGE, roomer(room))
@@ -385,8 +361,13 @@ def roomer(r):
 
 
 if main_:
-    for room in [r, baso]:
-        onn(room)
+    bot = sechat.Bot()
+    bot.login(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    def repeat():
+        [r, baso] = [bot.joinRoom(1), bot.joinRoom(146039)]
+        for room in [r, baso]:
+            onn(room)
+    repeat()
     app.run(host='0.0.0.0', port=5000)
     try:
         counter = 0
@@ -396,6 +377,8 @@ if main_:
             # st.write(f"Bot is running. Seconds since start: {counter}")
             time.sleep(1)
             counter += 1
+            if counter % 3600 == 0:
+                repeat()
     finally:
         r.send("Bot has stopped for updates.")
         bot.leaveAllRooms()
