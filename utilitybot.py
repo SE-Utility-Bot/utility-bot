@@ -16,9 +16,14 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
+with open('database_auth.json') as f:
+    print(f.read())
 cred = credentials.Certificate('database_auth.json')
+print(cred)
 f_init = firebase_admin.initialize_app(cred)
+print(f_init)
 db = firestore.client()
+print(db)
 
 # import streamlit as st
 
@@ -63,7 +68,8 @@ def remote(event):
 def dataread(coll, user, key):
     try:
         return db.collection(coll).document(user).to_dict()[key]
-    except:
+    except BaseException as e:
+        print(e)
         return None
 
 def datawrite(coll, user, key, value):
@@ -74,6 +80,7 @@ def datatoggle(coll, user, key):
 
 def tobool(val, truthy=["true", "1", "on", "y", "yes", "t", "i"], falsy=["false", "0", "off", "n", "no", "f", "o"], strfunc = (lambda x: str(x).lower())):
     ch = strfunc(val)
+    print(ch)
     if ch in truthy:
         return True
     elif ch in falsy:
@@ -364,9 +371,11 @@ if main_:
     bot = sechat.Bot()
     bot.login(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
     def repeat():
-        [r, baso] = [bot.joinRoom(1), bot.joinRoom(146039)]
-        for room in [r, baso]:
+        import datetime
+        [r, baso, ubot] = map(bot.joinRoom, [1, 146039, 152883])
+        for room in [r, baso, ubot]:
             onn(room)
+        ubot.send(f"Wake up, it's {str(datetime.datetime.now())}")
     repeat()
     app.run(host='0.0.0.0', port=5000)
     try:

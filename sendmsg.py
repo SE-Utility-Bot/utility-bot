@@ -1,18 +1,19 @@
 import re
 import sys
+import os
 
 import sechat
 
-EMAIL = sys.argv[1]
-PASSWORD = sys.argv[2]
-EVENT_NAME = sys.argv[3]
-EVENT_USER = sys.argv[4]
+EMAIL = os.environ["username"]
+PASSWORD = os.environ["password"]
+EVENT_NAME = os.environ["event"]
+EVENT_USER = os.environ["actor"]
 
 cleaned = re.sub(r"\[.*\]", "", EVENT_USER)
 
 bot = sechat.Bot()
 bot.login(EMAIL, PASSWORD)
-r = bot.joinRoom(147676)
+r = bot.joinRoom(152883)
 
 
 def indent(text):

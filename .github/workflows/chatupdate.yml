@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4
 
       - name: Install required packages
         run: |
@@ -15,4 +15,9 @@ jobs:
           python3 -m pip install -r requirements.txt
 
       - name: Send Message
-        run: python3 sendmsg.py ${{ secrets.BOT_EMAIL }} ${{ secrets.BOT_PASSWORD }} ${{ github.event_name }} ${{ github.actor }}
+        run: python3 sendmsg.py
+        env:
+          email: ${{ secrets.BOT_EMAIL }}
+          password: ${{ secrets.BOT_PASSWORD }}
+          event: ${{ github.event_name }}
+          actor: ${{ github.actor }}
