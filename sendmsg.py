@@ -8,6 +8,7 @@ EMAIL = os.environ["email"]
 PASSWORD = os.environ["password"]
 EVENT_NAME = os.environ["event"]
 EVENT_USER = os.environ["actor"]
+PAYLOAD = os.environ["payload"]
 
 cleaned = re.sub(r"\[.*\]", "", EVENT_USER)
 
@@ -21,5 +22,5 @@ def indent(text):
 
 
 r.send(
-    f'Event "{EVENT_NAME}" was triggered by {f"[{cleaned}](https://github.com/{cleaned})"}.'
+    indent(f'Event "{EVENT_NAME}" was triggered by {f"[{cleaned}](https://github.com/{cleaned})"}.\nPayload:\n{PAYLOAD}')
 )
