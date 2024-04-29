@@ -21,4 +21,4 @@ jobs:
           password: ${{ secrets.BOT_PASSWORD }}
           event: ${{ github.event_name }}
           actor: ${{ github.actor }}
-          payload: ${{ github.event }}
+          payload: ${{ !!str ${{ github.event }} }}
