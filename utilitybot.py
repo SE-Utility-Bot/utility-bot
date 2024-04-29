@@ -371,11 +371,10 @@ if main_:
     bot = sechat.Bot()
     bot.login(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
     def repeat():
-        import datetime
         [r, baso, ubot] = map(bot.joinRoom, [1, 146039, 152883])
         for room in [r, baso, ubot]:
             onn(room)
-        ubot.send(f"Wake up, it's {str(datetime.datetime.now())}")
+        ubot.send(f"Wake up, it's antifreeze time!")
     repeat()
     app.run(host='0.0.0.0', port=5000)
     try:
