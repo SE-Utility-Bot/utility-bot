@@ -15,7 +15,7 @@ jobs:
           python3 -m pip install -r requirements.txt
 
       - name: Send Message
-        run: python3 sendmsg.py
+        run: python3 sendrepoevent.py
         env:
           email: ${{ secrets.BOT_EMAIL }}
           password: ${{ secrets.BOT_PASSWORD }}
