@@ -1,4 +1,4 @@
-name: Post event into chat room
+name: Send message
 
 on:
   workflow_dispatch:
