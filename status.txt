@@ -45,3 +45,8 @@ I am playing golf with my Python. 🏌️🐍⛳
 I am wondering why `[prog_rand]` is part of my code.
 I am trying to catch the number 22. Yes, I caught it!
 I am posting empty strings on ---Twitter--- X on behalf of The Empty String Photographer. ---Their twitter password is `empty_string`.---
+Wait, there's a banana waiting for me?
+When did I ever say I was a bot?
+When you accidentally share your API key with the whole world:
+What the heck are you doing @OakBot !?!
+r.send(f'Event "{EVENT_NAME}" was triggered by [{CLEANED}](https://github.com/{CLEANED}). The [payload]({pastebin(PAYLOAD, PASTEBIN_KEY)}) is linked.')

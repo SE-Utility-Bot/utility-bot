@@ -2,3 +2,4 @@ sechat
 deep_translator
 flask
 firebase_admin
+requests

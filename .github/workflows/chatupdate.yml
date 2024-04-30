@@ -19,6 +19,7 @@ jobs:
         env:
           email: ${{ secrets.BOT_EMAIL }}
           password: ${{ secrets.BOT_PASSWORD }}
+          pastebin: ${{ secrets.PASTEBIN_KEY }}
           event: ${{ github.event_name }}
           actor: ${{ github.actor }}
           payload: ${{ toJSON(github.event) }}
