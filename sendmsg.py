@@ -21,6 +21,5 @@ def indent(text):
     return "\n".join("    " + x for x in text.split("\n"))
 
 
-r.send(
-    indent(f'Event "{EVENT_NAME}" was triggered by {f"[{cleaned}](https://github.com/{cleaned})"}.\nPayload:\n{PAYLOAD}')
-)
+r.send(f'Event "{EVENT_NAME}" was triggered by {f"[{cleaned}](https://github.com/{cleaned})"}.\nPayload:')
+r.send(PAYLOAD)
