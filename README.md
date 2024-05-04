@@ -1,6 +1,5 @@
 # Utility Bot
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/PlaceReporter99/utility-bot/main.svg)](https://results.pre-commit.ci/latest/github/PlaceReporter99/utility-bot/main)
-[![Run Tests](https://github.com/PlaceReporter99/utility-bot/actions/workflows/tests.yml/badge.svg)](https://github.com/PlaceReporter99/utility-bot/actions/workflows/tests.yml)
 [![CodeQL](https://github.com/PlaceReporter99/utility-bot/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/PlaceReporter99/utility-bot/actions/workflows/github-code-scanning/codeql)
 
 Utility Bot is hosted on GitHub!
