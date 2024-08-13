@@ -16,7 +16,7 @@ CLEANED = re.sub(r"\[.*\]", "", EVENT_USER)
 
 bot = sechat.Bot()
 bot.login(EMAIL, PASSWORD)
-r = bot.joinRoom(152883)
+r = bot.joinRoom(154629)
 
 def pastebin(text, key):
     return requests.post("https://pastebin.com/api/api_post.php", data = {'api_dev_key': key, 'api_option': 'paste', 'api_paste_code': text, 'api_paste_private': '1'}).text
