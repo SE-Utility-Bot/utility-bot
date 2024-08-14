@@ -124,66 +124,28 @@ def roomer(r):
         elif event.content[:8] == "echochr ":
             r.send(html.unescape(chr(int(event.content[8:]))))
         elif event.content[:5] == "calc ":
-            allowed = {
-                "+",
-                "-",
-                "*",
-                "/",
-                "=",
-                "!",
-                "<",
-                ">",
-                "&",
-                "|",
-                "^",
-                "~",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "0",
-                " ",
-                "(",
-                ")",
-                ".",
-                "%",
-            }
             string = html.unescape(event.content[5:])
             val = set(string)
             result = []
-            if val.issubset(allowed):
-                try:
-                    r.send(
-                        r.buildReply(
-                            event.message_id,
-                            "The answer is\n" + subprocess.check_output([
-                                "timeout",
-                                "-s",
-                                "SIGKILL",
-                                "10s",
-                                "python3",
-                                "calculate.py",
-                                string,
-                            ]).decode("utf-8").replace("\n", ""),
-                        ) + ".", )
-                except subprocess.CalledProcessError:
-                    r.send(
-                        r.buildReply(
-                            event.message_id,
-                            "Sorry, the calculation took longer than 10 seconds.",
-                        ))
-            else:
+            try:
                 r.send(
                     r.buildReply(
                         event.message_id,
-                        "Sorry, only characters in the set " +
-                        str(sorted(allowed)) +
-                        " are allowed due to security reasons.",
+                        "The answer is\n" + subprocess.check_output([
+                            "timeout",
+                            "-s",
+                            "SIGKILL",
+                            "10s",
+                            "python3",
+                            "calculate.py",
+                            string,
+                        ]).decode("utf-8").replace("\n", ""),
+                    ) + ".", )
+            except subprocess.CalledProcessError:
+                r.send(
+                    r.buildReply(
+                        event.message_id,
+                        "Sorry, the calculation took longer than 10 seconds.",
                     ))
         elif event.content[:5] == "ping ":
             r.send("@" + re.sub(" ", "", html.unescape(event.content[5:])))
