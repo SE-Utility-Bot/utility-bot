@@ -347,8 +347,6 @@ if main_:
             # st.write(f"Bot is running. Seconds since start: {counter}")
             time.sleep(1)
             counter += 1
-            if counter % 3600 == 0:
-                repeat()
     finally:
         r.send("Bot has stopped for updates.")
         bot.leaveAllRooms()
