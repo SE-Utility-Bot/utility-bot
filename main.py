@@ -340,7 +340,6 @@ if main_:
                 onn(room)
             ubot.send(f"Wake up, it's antifreeze time!")
         repeat()
-        app.run(host='0.0.0.0', port=5000)
         try:
             counter = 0
             print("Startup Successful.")
@@ -355,4 +354,6 @@ if main_:
             #r.send("Bot has stopped for updates.")
             bot.leaveAllRooms()
             mainf()
+    app.run(host='0.0.0.0', port=5000)
+    mainf()
         
