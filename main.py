@@ -332,6 +332,7 @@ def roomer(r):
 if main_:
     bot = sechat.Bot()
     bot.login(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    [r, baso, ubot] = [1, 1, 1] # Temp, will be replaced once repeat() is run. I think.
     def repeat():
         [r, baso, ubot] = map(bot.joinRoom, [1, 146039, 154629])
         for room in [r, baso, ubot]:
@@ -347,6 +348,10 @@ if main_:
             # st.write(f"Bot is running. Seconds since start: {counter}")
             time.sleep(1)
             counter += 1
+            if counter % 3600 == 0:
+                ubot.send(f"Wake up, it's antifreeze time!")
     finally:
-        r.send("Bot has stopped for updates.")
+        #r.send("Bot has stopped for updates.")
         bot.leaveAllRooms()
+        repeat()
+        
