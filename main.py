@@ -338,10 +338,10 @@ if main_:
         onn(room)
         
     try:
+        app.run(host='0.0.0.0', port=5000)
         while True:
             pass
     finally:
         bot.leaveAllRooms()
         
-    app.run(host='0.0.0.0', port=5000)
         
