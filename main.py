@@ -330,9 +330,9 @@ def roomer(r):
 
 
 if main_:
-    [r, baso, ubot] = map(bot.joinRoom, [1, 146039, 154629])
     bot = sechat.Bot()
     bot.login(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    [r, baso, ubot] = map(bot.joinRoom, [1, 146039, 154629])
     
     for room in [r, baso, ubot]:
         onn(room)
