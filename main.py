@@ -130,7 +130,7 @@ def roomer(r):
             r.send(
                 r.buildReply(
                     event.message_id,
-                    urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
+                    "\n" + urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
                 ))
         elif event.content[:5] == "ping ":
             r.send("@" + re.sub(" ", "", html.unescape(event.content[5:])))
