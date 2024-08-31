@@ -6,6 +6,8 @@ import sys
 import os
 import time
 from urllib.request import urlopen
+from urllib.parse import quote
+
 from flask import Flask
 
 import sechat
@@ -125,28 +127,11 @@ def roomer(r):
             r.send(html.unescape(chr(int(event.content[8:]))))
         elif event.content[:5] == "calc ":
             string = html.unescape(event.content[5:])
-            val = set(string)
-            result = []
-            try:
-                r.send(
-                    r.buildReply(
-                        event.message_id,
-                        "The answer is\n" + subprocess.check_output([
-                            "timeout",
-                            "-s",
-                            "SIGKILL",
-                            "10s",
-                            "python3",
-                            "calculate.py",
-                            string,
-                        ]).decode("utf-8").replace("\n", ""),
-                    ) + ".", )
-            except subprocess.CalledProcessError:
-                r.send(
-                    r.buildReply(
-                        event.message_id,
-                        "Sorry, the calculation took longer than 10 seconds.",
-                    ))
+            r.send(
+                r.buildReply(
+                    event.message_id,
+                    urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
+                ))
         elif event.content[:5] == "ping ":
             r.send("@" + re.sub(" ", "", html.unescape(event.content[5:])))
         elif event.content[:10] == "remotesay ":
@@ -178,7 +163,7 @@ def roomer(r):
                 "echochr <character number>":
                 "          Sends the unicode character with the codepoint of the number given to it. Must be in base 10.",
                 "calc <python expression>":
-                "            Sends the answer to the given Python expression. Uses a restricted character set due to security reasons. Times out after 10 seconds.",
+                "            Sends the answer to the given Python expression. Times out after 10 seconds.",
                 "ping <user name>":
                 "                    Pings the person with the username that was passed to it.",
                 "remotesay <room>, <message>":
@@ -233,14 +218,14 @@ def roomer(r):
             r.send(
                 r.buildReply(
                     event.message_id,
-                    'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/PlaceReporter99/utility-bot\nWebsite: https://utility-bot.streamlit.app/',
+                    'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/PlaceReporter99/utility-bot\nWebsite: https://utility-bot.streamlit.app/\nCalculation Module: https://github.com/SE-Utility-Bot/safe-exec',
                 ))
         elif event.content in ("op", "status"):
             with open("status.txt") as f, open(__file__) as g:
                 r.send(
                     r.buildReply(
                         event.message_id,
-                        secrets.choice(f.read().split("\n")).replace(
+                        secrets.choice(f.read().split("\n")).replace("\\n", "\n").replace(
                             "[prog_rand]",
                             secrets.choice(g.read().split("\n"))),
                     ))
