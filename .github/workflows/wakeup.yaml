@@ -1,0 +1,24 @@
+name: Send message
+
+on:
+  schedule:
+    - cron: "0 */1 * * *"
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install required packages
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+
+      - name: Send Message
+        run: python3 sendmsg.py
+        env:
+          email: ${{ secrets.BOT_EMAIL }}
+          password: ${{ secrets.BOT_PASSWORD }}
+          message: "Wake up, it's antifreeze time!"
+          room: '154629'
