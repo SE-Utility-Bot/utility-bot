@@ -154,7 +154,7 @@ def roomer(r):
             r.send(
                 r.buildReply(
                     event.message_id,
-                    "https://github.com/PlaceReporter99/utility-bot/blob/main/utilitybot.py",
+                    "https://github.com/SE-Utility-Bot/utility-bot/blob/main/utilitybot.py",
                 ))
         elif event.content[:6] == "getcmd":
             commands = {
@@ -218,7 +218,7 @@ def roomer(r):
             r.send(
                 r.buildReply(
                     event.message_id,
-                    'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/PlaceReporter99/utility-bot\nWebsite: https://utility-bot.streamlit.app/\nCalculation Module: https://github.com/SE-Utility-Bot/safe-exec',
+                    'Type in "getcmd" (without the quotes) for a list of commands and their descriptions.\n\nRepo: https://github.com/SE-Utility-Bot/utility-bot\nWebsite: https://utility-bot.streamlit.app/\nCalculation Module: https://github.com/SE-Utility-Bot/safe-exec',
                 ))
         elif event.content in ("op", "status"):
             with open("status.txt") as f, open(__file__) as g:
