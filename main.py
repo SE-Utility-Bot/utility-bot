@@ -154,7 +154,7 @@ def roomer(r):
             r.send(
                 r.buildReply(
                     event.message_id,
-                    "https://github.com/SE-Utility-Bot/utility-bot/blob/main/utilitybot.py",
+                    "https://github.com/SE-Utility-Bot/utility-bot/blob/main/main.py",
                 ))
         elif event.content[:6] == "getcmd":
             commands = {
