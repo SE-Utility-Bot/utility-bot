@@ -14,19 +14,6 @@ import sechat
 from deep_translator import GoogleTranslator
 from sechat.events import Events
 
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-
-with open('database_auth.json') as f:
-    print(f.read())
-cred = credentials.Certificate('database_auth.json')
-print(cred)
-f_init = firebase_admin.initialize_app(cred)
-print(f_init)
-db = firestore.client()
-print(db)
-
 # import streamlit as st
 
 #c = Conversation()
@@ -67,19 +54,6 @@ def remote(event):
         r.send(event.user_name + ": " + html.unescape(event.content[10:]))
         g.send(g.buildReply(event.message_id, "Message sent."))
 
-def dataread(coll, user, key):
-    try:
-        return db.collection(coll).document(user).to_dict()[key]
-    except BaseException as e:
-        print(e)
-        return None
-
-def datawrite(coll, user, key, value):
-    return db.collection(coll).document(user).set({key: value}, merge=True)
-
-def datatoggle(coll, user, key):
-    return datawrite(coll, user, key, not dataread(coll, user, key))
-
 def tobool(val, truthy=["true", "1", "on", "y", "yes", "t", "i"], falsy=["false", "0", "off", "n", "no", "f", "o"], strfunc = (lambda x: str(x).lower())):
     ch = strfunc(val)
     print(ch)
@@ -109,15 +83,7 @@ def roomer(r, bot):
                     html.unescape(event.content),
                     re.UNICODE,
             )) and event.user_id == 375672:
-                if result.group(1) == "Utility Bot" and rid not in nofish:
-                    r.send("/fish again")
-                else:
-                    settingr = dataread("settings", result.group(1), "fishping")
-                    if settingr == None:
-                        datawrite("settings", result.group(1), "fishping", False)
-                    elif settingr:
-                        r.send(
-                            f"@{result.group(1).replace(' ', '')} your fish is ready!")
+                r.send(f"@{result.group(1).replace(' ', '')} your fish is ready!")
             elif event.content[:5] == "echo ":
                 if event.user_id == 540406 or event.content[5:10] != "/fish":
                     r.send(html.unescape(event.content[5:]))
@@ -292,26 +258,6 @@ def roomer(r, bot):
                 else:
                     r.send(r.buildReply(event.message_id, "You don't have permission, sorry!"))
 
-            elif event.content[:8] == "setting ":
-                setting, value = map(remove_space, event.content[8:].split(","))
-                bool_settings = ["fishping"]
-                int_settings = []
-                if setting in bool_settings:
-                    value = tobool(value)
-                    if value == None:
-                        r.send(r.buildReply(event.message_id, "The provided value isn't a recognised boolean."))
-                        return
-                elif setting in int_settings:
-                    value = errortodefault(int)(value)
-                    if value == None:
-                        r.send(r.buildReply(event.message_id, "The provided value isn't a recognised number."))
-                        return
-                try:
-                    datawrite("settings", event.user_name, setting, value)
-                except:
-                    r.send(r.buildReply(event.message_id, "Setting could not be saved."))
-                else:
-                    r.send(r.buildReply(event.message_id, "Setting changed!"))
         except ConnectionError:
             bot.leaveAllRooms()
             mainf()
