@@ -97,10 +97,11 @@ def roomer(r, bot):
                 string = html.unescape(event.content[5:])
                 def send_r():
                     r.send(
-                        r.buildReply(
-                            event.message_id,
-                            "\n" + urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
-                        ))
+                        indent(
+                            r.buildReply(
+                                event.message_id,
+                                "\n" + urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
+                        )))
 
                 p = multiprocessing.Process(target=send_r)
                 p.start()
