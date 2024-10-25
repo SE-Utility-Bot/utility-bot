@@ -7,6 +7,7 @@ import os
 import time
 from urllib.request import urlopen
 from urllib.parse import quote
+import multiprocessing
 
 from flask import Flask
 
@@ -94,11 +95,19 @@ def roomer(r, bot):
                 r.send(html.unescape(chr(int(event.content[8:]))))
             elif event.content[:5] == "calc ":
                 string = html.unescape(event.content[5:])
-                r.send(
-                    r.buildReply(
-                        event.message_id,
-                        "\n" + urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
-                    ))
+                def send_r():
+                    r.send(
+                        r.buildReply(
+                            event.message_id,
+                            "\n" + urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
+                        ))
+
+                p = multiprocessing.Process(target=send_r)
+                p.start()
+                p.join(15)
+                if p.is_alive():
+                    p.kill()
+                    r.send(r.buildReply(event.message_id, "Request took too long."))
             elif event.content[:5] == "ping ":
                 r.send("@" + re.sub(" ", "", html.unescape(event.content[5:])))
             elif event.content[:10] == "remotesay ":
