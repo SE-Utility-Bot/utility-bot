@@ -96,13 +96,7 @@ def roomer(r, bot):
             elif event.content[:5] == "calc ":
                 string = html.unescape(event.content[5:])
                 def send_r():
-                    r.send(
-                        indent(
-                            r.buildReply(
-                                event.message_id,
-                                "\n" + urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")
-                        )))
-
+                    r.send(indent(urlopen(f"https://safe-exec.onrender.com/{quote(string, safe='')}").read().decode("utf-8")))
                 p = multiprocessing.Process(target=send_r)
                 p.start()
                 p.join(15)
