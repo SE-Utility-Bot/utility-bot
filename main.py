@@ -277,7 +277,7 @@ def roomer(r, bot):
             elif event.content[:6] == "paste ":
                 string = html.unescape(event.content[5:]).replace("<br>","\n")
                 req = requests.post("https://pastebin.com/api/api_post.php", data={"api_dev_key": os.environ["PASTEBIN_API_KEY"], "api_option": "paste", "api_paste_code": string, "api_paste_format": "python", "api_paste_private": 0}, timeout=15)
-                r.send(r.buildReply(events.message_id, req.text))
+                r.send(r.buildReply(event.message_id, req.text))
         except ConnectionError:
             bot.leaveAllRooms()
             mainf()
