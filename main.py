@@ -5,6 +5,7 @@ import subprocess
 import sys
 import os
 import time
+import requests
 from urllib.request import urlopen
 from urllib.parse import quote
 import multiprocessing
@@ -261,7 +262,22 @@ def roomer(r, bot):
                         r.send(r.buildReply(event.message_id, "An error occured while executing the command."))
                 else:
                     r.send(r.buildReply(event.message_id, "You don't have permission, sorry!"))
+                    
+            elif event.content[:4] == "run ":
+                string = html.unescape(event.content[4:])
+                def send_r():
+                    r.send(indent(urlopen(f"https://safe-exec.onrender.com/run/{quote(string, safe='')}").read().decode("utf-8")))
+                p = multiprocessing.Process(target=send_r)
+                p.start()
+                p.join(15)
+                if p.is_alive():
+                    p.kill()
+                    r.send(r.buildReply(event.message_id, "Request took too long."))
 
+            elif event.content[:6] == "paste ":
+                string = html.unescape(event.content[5:]).replace("<br>","\n")
+                req = requests.post("https://pastebin.com/api/api_post.php", data={"api_dev_key": os.environ["PASTEBIN_API_KEY"], "api_option": "paste", "api_paste_code": string, "api_paste_format": "python", "api_paste_private": 0}, timeout=15)
+                r.send(r.buildReply(events.message_id, req.text))
         except ConnectionError:
             bot.leaveAllRooms()
             mainf()
@@ -283,5 +299,3 @@ if main_:
             pass
     finally:
         bot.leaveAllRooms()
-        
-        
