@@ -263,4 +263,4 @@ bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD
 print(bot)
 [r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
 for room in [r, baso, ubot]:
-    onn(room, bot)
+    onn(room)
