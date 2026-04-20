@@ -259,8 +259,10 @@ def errortodefault(func, default=None):
             return default
     return f
 
-bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
-print(bot)
-[r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
-for room in [r, baso, ubot]:
-    onn(room)
+async def main():
+    bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    print(bot)
+    [r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
+    await asyncio.gather(*[onn(room) for room in [r, baso, ubot]])
+
+asyncio.run(main())
