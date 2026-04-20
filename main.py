@@ -260,7 +260,7 @@ def errortodefault(func, default=None):
     return f
 
 async def main():
-    bot = await Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    bot = await Credentials.load_or_authenticate("credentials.dat", os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
     print(bot)
     [r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
     await asyncio.gather(*[onn(room) for room in [r, baso, ubot]])
