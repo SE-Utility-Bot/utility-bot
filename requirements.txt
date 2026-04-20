@@ -1,4 +1,4 @@
-sechat
+git+https://github.com/gingershaped/sechat/project.git@v3
 deep_translator
 flask
 firebase_admin
