@@ -32,8 +32,6 @@ app = Flask(__name__)
 def page():
     return "<h1 style='text-align: center;'><a href='https://chat.stackexchange.com/rooms/1/sandbox'>Try it here</a></h1>"
 
-main_ = __name__ == "__main__"
-
 def message_handler(message: str, message_id: int, sender: int, sender_name: str, room: Optional[Room] = None) -> str:
     if (result := re.match(
             r"🐟 <i>(.*)'s line quivers\.<\/i>",
@@ -261,12 +259,8 @@ def errortodefault(func, default=None):
             return default
     return f
 
-def mainf():
-    bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
-    print(bot)
-    [r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
-    for room in [r, baso, ubot]:
-        onn(room, bot)
-
-if main_:
-    mainf()
+bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+print(bot)
+[r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
+for room in [r, baso, ubot]:
+    onn(room, bot)
