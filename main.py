@@ -220,7 +220,7 @@ async def onn(room: Room):
         if type(event) is MessageEvent:
             result = message_handler(event.content, event.message_id, event.user_id, event.user_name, room)
             if result is not None:
-                room.send(result)
+                await room.send(result)
 
 def build_reply(message_id: int, message: str):
     return f":{message_id} {message}"
@@ -260,7 +260,7 @@ def errortodefault(func, default=None):
     return f
 
 async def main():
-    bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    bot = await Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
     print(bot)
     [r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
     await asyncio.gather(*[onn(room) for room in [r, baso, ubot]])
