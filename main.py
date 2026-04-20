@@ -218,6 +218,7 @@ def message_handler(message: str, message_id: int, sender: int, sender_name: str
 
 async def onn(room: Room):
     async for event in room.events():
+        print(event)
         if type(event) is MessageEvent:
             result = message_handler(event.content, event.message_id, event.user_id, event.user_name, room)
             if result is not None:
@@ -262,6 +263,7 @@ def errortodefault(func, default=None):
 
 def mainf():
     bot = Credentials.authenticate(os.environ["BOT_EMAIL"], os.environ["BOT_PASSWORD"])
+    print(bot)
     [r, baso, ubot] = map(lambda x:Room.join(bot, x), [1, 146039, 154629])
     for room in [r, baso, ubot]:
         onn(room, bot)
