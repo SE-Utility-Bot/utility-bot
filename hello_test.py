@@ -1,4 +1,5 @@
 import asyncio
+import os
 
 from sechat import Credentials, Room
 
